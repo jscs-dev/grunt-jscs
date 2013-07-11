@@ -19,5 +19,5 @@
         "checkRedundantParams": true,
         "requireParamTypes":    true
     },
-    "excludeFiles": [ "node_modules/**", "framework-0.3.0/**" ]
+    "excludeFiles": [ "node_modules/**" ]
 }
