@@ -1,0 +1,11 @@
+{
+    "maxlen": 100,
+    "eqnull": true,
+    "eqeqeq": true,
+    "strict": true,
+    "quotmark": "double",
+    "curly": true,
+    "noempty": true,
+
+    "node": true
+}

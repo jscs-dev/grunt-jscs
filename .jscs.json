@@ -1,0 +1,23 @@
+{
+    "requireCurlyBraces":                   [ "if", "else", "for", "while", "do", "switch" ],
+    "requireSpaceAfterKeywords":            [ "if", "else", "for", "while", "do", "switch" ],
+    "disallowSpaceAfterKeywords":           [],
+    "requireSpacesInsideObjectBrackets":    "all",
+    "disallowQuotedKeysInObjects":          false,
+    "disallowSpaceAfterObjectKeys":         true,
+    "disallowLeftStickedOperators":         [ "?", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
+    "requireRightStickedOperators":         [ "!" ],
+    "disallowRightStickedOperators":        [ "?", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=" ],
+    "requireLeftStickedOperators":          [ "," ],
+    "disallowImplicitTypeConversion":       [],
+    "disallowKeywords":                     [ "with" ],
+    "disallowMultipleLineBreaks":           true,
+    "disallowKeywordsOnNewLine":            [ "else" ],
+    "requireKeywordsOnNewLine":             [],
+    "validateJSDoc": {
+        "checkParamNames":      true,
+        "checkRedundantParams": true,
+        "requireParamTypes":    true
+    },
+    "excludeFiles": [ "node_modules/**", "framework-0.3.0/**" ]
+}

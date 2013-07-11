@@ -1,0 +1,36 @@
+{
+    "name": "grunt-jscs-checker",
+    "version": "0.1.0",
+    "author": {
+        "name": "Gustavo Henke",
+        "url":  "https://github.com/gustavohenke"
+    },
+    "repository": {
+        "type": "git",
+        "url":  "git://github.com/gustavohenke/grunt-jscs-checker.git"
+    },
+    "bugs": {
+        "url": "https://github.com/gustavohenke/grunt-jscs-checker/issues"
+    },
+    "dependencies": {
+        "jscs": "1.0.0"
+    },
+    "devDependencies": {
+        "grunt-contrib-jshint": "~0.6.0"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.0"
+    },
+    "main": "Gruntfile.js",
+    "keywords": [
+        "gruntplugin",
+        "kiwi",
+        "templating"
+    ],
+    "engines": {
+        "node": ">=0.8.0"
+    },
+    "scripts": {
+        "test": "grunt default"
+    }
+}
