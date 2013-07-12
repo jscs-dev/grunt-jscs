@@ -1,6 +1,6 @@
 {
     "name": "grunt-jscs-checker",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": {
         "name": "Gustavo Henke",
         "url":  "https://github.com/gustavohenke"
@@ -24,8 +24,9 @@
     "main": "Gruntfile.js",
     "keywords": [
         "gruntplugin",
-        "kiwi",
-        "templating"
+        "jscs",
+        "code style",
+        "checker"
     ],
     "engines": {
         "node": ">=0.8.0"
