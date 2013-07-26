@@ -1,4 +1,4 @@
-# grunt-jscs-checker [![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs-checker.png?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs-checker)
+# grunt-jscs-checker [![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs-checker.png?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs-checker) [![NPM version](https://badge.fury.io/js/grunt-jscs-checker.png)](http://badge.fury.io/js/grunt-jscs-checker)
 > Task for checking JavaScript Code Style with [jscs](https://github.com/mdevils/node-jscs).
 
 ## Getting started
