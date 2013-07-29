@@ -1,7 +1,7 @@
 {
     "name": "grunt-jscs-checker",
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "author": {
         "name": "Gustavo Henke",
         "url":  "https://github.com/gustavohenke"
@@ -14,7 +14,7 @@
         "url": "https://github.com/gustavohenke/grunt-jscs-checker/issues"
     },
     "dependencies": {
-        "jscs": "1.0.1"
+        "jscs": "1.0.2"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.6.0"
