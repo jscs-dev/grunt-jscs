@@ -14,7 +14,7 @@
         "url": "https://github.com/gustavohenke/grunt-jscs-checker/issues"
     },
     "dependencies": {
-        "jscs": "1.0.3"
+        "jscs": "1.0.4"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.6.0"

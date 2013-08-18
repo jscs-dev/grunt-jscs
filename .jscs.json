@@ -14,6 +14,12 @@
     "disallowKeywordsOnNewLine":            [ "else" ],
     "requireKeywordsOnNewLine":             [],
     "requireSpacesInsideArrayBrackets":     "all",
+    "requireSpacesInFunctionExpression": {
+        "beforeOpeningCurlyBrace": true
+    },
+    "disallowSpacesInFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
     "validateJSDoc": {
         "checkParamNames":      true,
         "checkRedundantParams": true,
