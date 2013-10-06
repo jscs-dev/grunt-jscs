@@ -3,13 +3,14 @@ module.exports = function( grunt ) {
 
     var fs = require( "fs" );
     var path = require( "path" );
-    var jscs = new (require( "jscs/lib/checker" ))();
+    var Checker = require( "jscs/lib/checker" );
     var defaults = {
         config: ".jscs.json"
     };
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var errorCount, i;
+        var jscs = new Checker();
         var options = this.options( defaults );
         var cfgPath = options.config;
         var files = this.filesSrc;
