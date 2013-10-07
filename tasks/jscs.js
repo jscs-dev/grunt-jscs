@@ -31,6 +31,11 @@ module.exports = function( grunt ) {
 
         errorCount = i = 0;
         files.map( jscs.checkFile, jscs ).forEach(function( promise ) {
+            if ( !promise ) {
+                i++;
+                return;
+            }
+
             promise.then(function( errors ) {
                 i++;
 
