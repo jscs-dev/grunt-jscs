@@ -31,15 +31,30 @@ module.exports = function( grunt ) {
         jscs.configure( require( cfgPath ) );
 
         errorCount = i = 0;
+
+        function update() {
+            i++;
+
+            // Does all promises have been run?
+            if ( i === files.length ) {
+                if ( errorCount > 0 ) {
+                    grunt.log.error( errorCount + " code style errors found!" );
+                    done( false );
+                } else {
+                    // Shows the number of OK files, as per #5
+                    grunt.log.ok( files.length + " without code style errors." );
+                    done( true );
+                }
+            }
+        }
+
         files.map( jscs.checkFile, jscs ).forEach(function( promise ) {
             if ( !promise ) {
-                i++;
+                update();
                 return;
             }
 
             promise.then(function( errors ) {
-                i++;
-
                 if ( !errors.isEmpty() ) {
                     errors.getErrorList().forEach(function( error ) {
                         errorCount++;
@@ -47,17 +62,8 @@ module.exports = function( grunt ) {
                     });
                 }
 
-                // Does all promises have been run?
-                if ( i === files.length ) {
-                    if ( errorCount > 0 ) {
-                        grunt.log.error( errorCount + " code style errors found!" );
-                        done( false );
-                    } else {
-                        grunt.log.ok( "No code style errors found." );
-                        done( true );
-                    }
-                }
-            });
+               update();
+           });
         });
     });
 };
