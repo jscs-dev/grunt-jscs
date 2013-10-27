@@ -1,0 +1,3 @@
+{
+    "excludeFiles": [ "fixtures/exclude.js" ]
+}
