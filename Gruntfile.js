@@ -25,16 +25,20 @@ module.exports = function( grunt ) {
             options: {
                 jshintrc: ".jshintrc"
             },
-            all: [ "Gruntfile.js", "tasks/*.js" ]
+            all: [ "Gruntfile.js", "tasks/*.js", "test/*.js" ]
         },
         jscs: {
             all: "<%= jshint.all %>"
+        },
+        nodeunit: {
+            test: "test/test.js"
         }
     });
 
     grunt.loadNpmTasks( "grunt-contrib-jshint" );
+    grunt.loadNpmTasks( "grunt-contrib-nodeunit" );
     grunt.loadNpmTasks( "grunt-bump" );
     grunt.loadTasks( "tasks" );
 
-    grunt.registerTask( "default", [ "jshint", "jscs" ] );
+    grunt.registerTask( "default", [ "jshint", "jscs", "nodeunit" ] );
 };
