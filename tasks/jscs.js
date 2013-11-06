@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
                     done( false );
                 } else {
                     // Shows the number of OK files, as per #5
-                    grunt.log.ok( files.length + " without code style errors." );
+                    grunt.log.ok( files.length + " files without code style errors." );
                     done( true );
                 }
             }
