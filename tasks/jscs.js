@@ -38,7 +38,7 @@ module.exports = function( grunt ) {
             junitXML.ele( "testsuite", {
                 name: "JSCS",
                 timestamp: ( new Date() ).toISOString().substr( 0, 19 )
-            } );
+            });
         }
 
         function update() {
@@ -76,7 +76,7 @@ module.exports = function( grunt ) {
                 if ( junitXML ) {
                     var spec = junitXML.ele( "testcase", {
                       name: errors.getFilename()
-                    } );
+                    });
                 }
 
                 if ( !errors.isEmpty() ) {
