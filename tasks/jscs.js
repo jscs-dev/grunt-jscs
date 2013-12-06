@@ -1,22 +1,21 @@
 module.exports = function( grunt ) {
     "use strict";
 
-    var fs = require( "fs" );
-    var path = require( "path" );
-    var builder = require( "xmlbuilder" );
-    var Checker = require( "jscs/lib/checker" );
-    var defaults = {
-        config: ".jscs.json"
-    };
+    var fs = require( "fs" ),
+        builder = require( "xmlbuilder" ),
+        Checker = require( "jscs/lib/checker" ),
+        defaults = {
+            config: ".jscs.json"
+        };
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
-        var errorCount, i;
-        var jscs = new Checker();
-        var options = this.options( defaults );
-        var cfgPath = options.config;
-        var files = this.filesSrc;
-        var done = this.async();
-        var junitXML = options.junit ? builder.create( "testsuites" ) : null;
+        var errorCount, i,
+            jscs = new Checker(),
+            options = this.options( defaults ),
+            cfgPath = options.config,
+            files = this.filesSrc,
+            done = this.async(),
+            junitXML = options.junit ? builder.create( "testsuites" ) : null;
 
         if ( !grunt.file.isPathAbsolute( cfgPath ) ) {
             // Prepend the cwd, as jscs does via CLI

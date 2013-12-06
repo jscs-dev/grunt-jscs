@@ -1,11 +1,18 @@
 {
-    "maxlen": 100,
-    "eqnull": true,
-    "eqeqeq": true,
-    "strict": true,
-    "quotmark": "double",
+	"maxlen": 100,
+    "boss": true,
     "curly": true,
-    "noempty": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "expr": true,
+    "immed": true,
+    "noarg": true,
+    "onevar": true,
+    "quotmark": "double",
+    "smarttabs": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
 
     "node": true
 }
