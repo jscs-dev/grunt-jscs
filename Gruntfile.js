@@ -28,14 +28,7 @@ module.exports = function( grunt ) {
             all: [ "Gruntfile.js", "tasks/*.js", "test/*.js" ]
         },
         jscs: {
-            all: {
-                files: {
-                    src: "<%= jshint.all %>"
-                },
-                options: {
-                    junit: "jscs-output.xml"
-                }
-            }
+            src: "<%= jshint.all %>"
         },
         nodeunit: {
             test: "test/test.js"
