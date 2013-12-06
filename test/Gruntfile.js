@@ -30,6 +30,14 @@ module.exports = function( grunt ) {
                     junit: "jscs-output.xml"
                 }
             },
+            additional: {
+                files: {
+                    src: "fixtures/fixture.js"
+                },
+                options: {
+                    config: "configs/additional.json"
+                }
+            },
             config: "fixtures/fixture.js"
         }
     });
