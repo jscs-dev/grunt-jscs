@@ -60,7 +60,7 @@ module.exports = function( grunt ) {
                     // Shows the number of OK files, as per #5
                     grunt.log.ok( files.length + " files without code style errors." );
 
-                    done( true );
+                    done();
                 }
             }
         }
