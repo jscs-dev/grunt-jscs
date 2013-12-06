@@ -37,6 +37,17 @@ exports.exclude = function( test ) {
     });
 };
 
+exports.additional = function( test ) {
+    grunt.util.spawn({
+        cmd: "grunt",
+        args: [ "jscs:additional" ]
+    }, function( error, result ) {
+        test.equal( grunt.file.read( "expectations/additional" ), result.stdout );
+
+        test.done();
+    });
+};
+
 exports.all = function( test ) {
     grunt.util.spawn({
         cmd: "grunt",
