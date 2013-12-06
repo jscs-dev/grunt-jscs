@@ -42,9 +42,9 @@ module.exports = function( grunt ) {
         }
     });
 
-    grunt.loadNpmTasks( "grunt-contrib-jshint" );
-    grunt.loadNpmTasks( "grunt-contrib-nodeunit" );
-    grunt.loadNpmTasks( "grunt-bump" );
+    // Load grunt tasks from NPM packages
+    require( "load-grunt-tasks" )( grunt );
+    
     grunt.loadTasks( "tasks" );
 
     grunt.registerTask( "default", [ "jshint", "jscs", "nodeunit" ] );
