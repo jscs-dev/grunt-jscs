@@ -1,4 +1,0 @@
-{
-    "requireCurlyBraces": [ "while" ],
-    "excludeFiles": [ "../fixtures/exclude.js" ]
-}
