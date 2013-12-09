@@ -7,7 +7,7 @@ var Checker = require( "jscs/lib/checker" ),
 exports.init = function( grunt ) {
 
     // Task specific options
-    var taskOptions = [ "config", "reporter" ];
+    var taskOptions = [ "config", "reporter", "reporterOutput" ];
 
     /**
      * @see jQuery.isEmptyObject
@@ -46,9 +46,10 @@ exports.init = function( grunt ) {
      */
     function JSCS( options ) {
         this.checker = new Checker();
+        this.options = options;
 
         this.checker.registerDefaultRules();
-        this.checker.configure( this.getConfig( options ) );
+        this.checker.configure( this.getConfig() );
 
         this._reporter = this.registerReporter( options.reporter );
     }
@@ -62,12 +63,11 @@ exports.init = function( grunt ) {
 
     /**
      * Get config
-     * @param {Object} options
      * @return {Object}
      */
-    JSCS.prototype.getConfig = function( options ) {
-        var config = options.config && this.findConfig( options.config ) ||
-                this.getOptions( options );
+    JSCS.prototype.getConfig = function() {
+        var options = this.options || {},
+            config = options.config ? this.findConfig() : this.getOptions();
 
         if ( !config ) {
             if ( options.config ) {
@@ -83,10 +83,11 @@ exports.init = function( grunt ) {
 
     /**
      * Read config file
-     * @param {String} path
      * @return {Boolean|Object}
      */
-    JSCS.prototype.findConfig = function( path ) {
+    JSCS.prototype.findConfig = function() {
+        var path = this.options && this.options.config;
+
         if ( !grunt.file.isPathAbsolute( path ) ) {
 
             // Prepend the cwd, as jscs does via CLI
@@ -102,19 +103,18 @@ exports.init = function( grunt ) {
 
     /**
      * Get inline options
-     * @param {Object} options
      * @return {Boolean|Object}
      */
-    JSCS.prototype.getOptions = function( options ) {
+    JSCS.prototype.getOptions = function() {
         var _options = {};
 
         // Copy options to another object so this method would not be destructive
-        for ( var option in options ) {
+        for ( var option in this.options ) {
 
             // If to jscs would be given a grunt task option
             // that not defined in jscs it would throw
             if ( !~taskOptions.indexOf( option ) ) {
-                _options[ option ] = options[ option ]
+                _options[ option ] = this.options[ option ]
             }
         }
 
