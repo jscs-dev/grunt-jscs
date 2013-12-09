@@ -98,5 +98,31 @@ module.exports = {
         test.ok( !proto.getOptions({}), "should return false if empty object was passed" );
 
         test.done();
+    },
+
+    registerReporter: function( test ) {
+        var jscs = new JSCS({
+            requireCurlyBraces: [],
+        });
+
+        test.equal( typeof jscs.getReporter(), "function", "should register default reporter" );
+
+
+        jscs = new JSCS({
+            requireCurlyBraces: [],
+            reporter: "checkstyle"
+        });
+
+        test.equal( typeof jscs.getReporter(), "function",
+            "should register reporter from jscs package" );
+
+        jscs = new JSCS({
+            requireCurlyBraces: [],
+            reporter: "test/test-reporter.js"
+        });
+
+        test.equal( jscs.getReporter()(), "test", "should register reporter as npm module" );
+
+        test.done();
     }
 };
