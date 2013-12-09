@@ -15,7 +15,7 @@ module.exports = {
         });
 
         fixture.check( "test/fixtures/fixture.js" ).then(function( collection ) {
-            errors = collection;
+            fixture.setErrors( errors = collection );
             done();
         });
     },
@@ -141,5 +141,35 @@ module.exports = {
         test.equal( fixture.count( errors ), 1, "should correctly count errors" );
 
         test.done();
+    },
+
+    report: function( test ) {
+        hooker.hook( grunt.log, "writeln", {
+            pre: function( message ) {
+                test.ok( message.length, "Reporter report something" );
+                test.done();
+
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        fixture.report();
+    },
+
+    notify: function( test ) {
+        hooker.hook( grunt.log, "error", {
+            pre: function( message ) {
+                test.ok( message, "1 code style errors found!" );
+                test.done();
+
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        fixture.notify();
     }
 };
