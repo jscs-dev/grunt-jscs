@@ -4,7 +4,7 @@ var fixture, errors,
     grunt = require( "grunt" ),
     JSCS = require( "../tasks/lib/jscs" ).init( grunt ),
 
-    proto = JSCS.prototype,
+    path = require( "path" ),
 
     hooker = require( "hooker" );
 
@@ -21,35 +21,39 @@ module.exports = {
     },
 
     getConfig: function( test ) {
-        var result,
-            config = {
+        var jscs;
+
+        try {
+            new JSCS({
                 config: "test/configs/example.json"
-            };
+            });
+        } catch ( error ) {
+            test.equal( error.toString(), "Error: Unsupported rules: example",
+                "should find config at local path" );
+        }
 
-        result = proto.getConfig( config );
-        test.equal( result.example, "test", "should find config at local path" );
+        try {
+            new JSCS({
+                config: path.resolve( process.cwd(), "test/configs/example.json" )
+            });
+        } catch ( error ) {
+            test.equal( error.toString(), "Error: Unsupported rules: example",
+                "should find config at absolute path" );
+        }
 
-        config.config = process.cwd() + "/" + config.config;
-        result = proto.getConfig( config );
-        test.equal( result.example, "test", "should find config at absolute path" );
-
-        config = {
+        jscs = new JSCS({
             requireCurlyBraces: [ "if" ],
-            config: "test.js"
-        };
+        }).getConfig();
 
-        result = proto.getConfig( config );
-
-        test.ok( !result.example, "should have find config file with inline option" );
-        test.ok( !result.config, "config option should have been removed" );
-        test.ok( Array.isArray( result.requireCurlyBraces ),
+        test.ok( Array.isArray( jscs.requireCurlyBraces ),
                 "\"requireCurlyBraces\" option should have been preserved" );
 
-        config = {
+        jscs = new JSCS({
             requireCurlyBraces: [ "if" ],
-        };
+        }).getConfig();
 
-        test.ok( Array.isArray( result.requireCurlyBraces ),
+        test.ok( !jscs.config, "config option should have been removed" );
+        test.ok( Array.isArray( jscs.requireCurlyBraces ),
                 "\"requireCurlyBraces\" option should have been preserved" );
 
         test.done();
@@ -67,7 +71,9 @@ module.exports = {
             once: true
         });
 
-        proto.getConfig({});
+        try {
+            new JSCS({});
+        } catch( _ ) {}
     },
 
     "getConfig error with incorrect config": function( test ) {
@@ -82,32 +88,33 @@ module.exports = {
             once: true
         });
 
-        proto.getConfig({
-            config: "not-existed"
-        });
+        try {
+            new JSCS({
+                config: "not-existed"
+            });
+        } catch( _ ) {}
     },
 
     findConfig: function( test ) {
-        var result;
+        var jscs;
 
-        result = proto.findConfig( "test/configs/example.json" );
+        try {
+            jscs = new JSCS({
+                config: "test/configs/example.json"
+            });
+        } catch ( error ) {
+            test.equal( error.toString(), "Error: Unsupported rules: example",
+                "should find config at local path" );
+        }
 
-        test.equal( result.example, "test", "should find config at local path" );
-
-        result = proto.findConfig( process.cwd() + "/" + "test/configs/example.json" );
-        test.equal( result.example, "test", "should find config at absolute path" );
-
-        test.done();
-    },
-
-    getOptions: function( test ) {
-        var options = proto.getOptions({
-            requireCurlyBraces: [ "if" ],
-            config: "test.js"
-        });
-
-        test.ok( !options.config, "should remove task option" );
-        test.ok( !proto.getOptions({}), "should return false if empty object was passed" );
+        try {
+            jscs = new JSCS({
+                config: path.resolve( process.cwd(), "test/configs/example.json" )
+            });
+        } catch ( error ) {
+            test.equal( error.toString(), "Error: Unsupported rules: example",
+                "should find config at absolute path"  );
+        }
 
         test.done();
     },
@@ -146,7 +153,7 @@ module.exports = {
     report: function( test ) {
         hooker.hook( grunt.log, "writeln", {
             pre: function( message ) {
-                test.ok( message.length, "Reporter report something" );
+                test.ok( message, "Reporter report something" );
                 test.done();
 
                 return hooker.preempt();
