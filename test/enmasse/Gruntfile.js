@@ -43,6 +43,15 @@ module.exports = function( grunt ) {
                     config: "../configs/additional.json"
                 }
             },
+            reporter: {
+                files: {
+                    src: "../fixtures/fixture.js"
+                },
+                options: {
+                    reporter: "checkstyle",
+                    config: "../configs/fail.json"
+                }
+            },
             config: "../fixtures/fixture.js"
         }
     });
