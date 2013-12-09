@@ -8,7 +8,16 @@ module.exports = function( grunt ) {
                     src: "../fixtures/fixture.js"
                 },
                 options: {
+                    config: "../configs/fail.json"
+                }
+            },
+            force: {
+                files: {
+                    src: "../fixtures/fixture.js"
+                },
+                options: {
                     config: "../configs/fail.json",
+                    force: true
                 }
             },
             success: {
@@ -16,7 +25,7 @@ module.exports = function( grunt ) {
                     src: "../fixtures/fixture.js"
                 },
                 options: {
-                    config: "../configs/success.json",
+                    config: "../configs/success.json"
                 }
             },
             config: "../fixtures/fixture.js"

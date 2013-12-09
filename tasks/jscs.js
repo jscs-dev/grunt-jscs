@@ -22,7 +22,7 @@ module.exports = function( grunt ) {
 
             jscs.setErrors( errors ).report().notify();
 
-            done( !jscs.count() );
+            done( options.force ? true : !jscs.count() );
         });
     });
 };
