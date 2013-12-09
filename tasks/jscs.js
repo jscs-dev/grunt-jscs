@@ -20,9 +20,9 @@ module.exports = function( grunt ) {
         Vow.all( checks ).then(function( results ) {
             var errors = [].concat.apply( [], results );
 
-            jscs.report( errors ).notify( errors );
+            jscs.setErrors( errors ).report().notify();
 
-            done( !jscs.count( errors ) );
+            done( !jscs.count() );
         });
     });
 };

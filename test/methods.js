@@ -1,6 +1,7 @@
 "use strict";
 
-var grunt = require( "grunt" ),
+var fixture, errors,
+    grunt = require( "grunt" ),
     JSCS = require( "../tasks/lib/jscs" ).init( grunt ),
 
     proto = JSCS.prototype,
@@ -8,6 +9,17 @@ var grunt = require( "grunt" ),
     hooker = require( "hooker" );
 
 module.exports = {
+    setUp: function( done ) {
+        fixture = new JSCS({
+            config: "test/configs/fail.json"
+        });
+
+        fixture.check( "test/fixtures/fixture.js" ).then(function( collection ) {
+            errors = collection;
+            done();
+        });
+    },
+
     getConfig: function( test ) {
         var result,
             config = {
@@ -107,7 +119,6 @@ module.exports = {
 
         test.equal( typeof jscs.getReporter(), "function", "should register default reporter" );
 
-
         jscs = new JSCS({
             requireCurlyBraces: [],
             reporter: "checkstyle"
@@ -122,6 +133,12 @@ module.exports = {
         });
 
         test.equal( jscs.getReporter()(), "test", "should register reporter as npm module" );
+
+        test.done();
+    },
+
+    count: function( test ) {
+        test.equal( fixture.count( errors ), 1, "should correctly count errors" );
 
         test.done();
     }
