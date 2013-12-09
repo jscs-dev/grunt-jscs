@@ -28,10 +28,10 @@ exports.init = function( grunt ) {
 
         if ( !config ) {
             if ( options.config ) {
-                grunt.fail.fatal( "The config file " + options.config + " was not found" );
+                grunt.fatal( "The config file \"" + options.config + "\" was not found" );
 
             } else {
-                grunt.fail.fatal( "Nor config file nor inline options was found" );
+                grunt.fatal( "Nor config file nor inline options was found" );
             }
         }
 
