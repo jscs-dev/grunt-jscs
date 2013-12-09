@@ -1,8 +1,10 @@
 "use stirct";
 
-var Checker = require( "jscs/lib/checker" ),
-    path = require( "path" ),
-    utils = require( "util" );
+var path = require( "path" ),
+    utils = require( "util" ),
+
+    Checker = require( "jscs/lib/checker" )
+    hooker = require( "hooker" );
 
 exports.init = function( grunt ) {
 
@@ -188,7 +190,24 @@ exports.init = function( grunt ) {
      * @return {JSCS}
      */
     JSCS.prototype.report = function( errorsCollection ) {
+        var options = this.options,
+            shouldHook = options.reporter && options.reporterOutput;
+
+        if ( shouldHook ) {
+            hooker.hook( process.stdout, "write", {
+                pre: function( out ) {
+                    grunt.file.write( options.reporterOutput, out );
+
+                    return hooker.preempt();
+                }
+            });
+        }
+
         this._result = this._reporter( errorsCollection || this._errors );
+
+        if ( shouldHook ) {
+            hooker.unhook( process.stdout, "write" );
+        }
 
         return this;
     }

@@ -206,5 +206,22 @@ module.exports = {
                 test.done();
             });
         });
+    },
+
+    reporterOutput: function( test ) {
+        var jscs = new JSCS({
+            "requireCurlyBraces": [ "while" ],
+            reporter: "checkstyle",
+            reporterOutput: "test.xml"
+        });
+
+        jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
+            jscs.report( errorsCollection );
+
+            test.ok( grunt.file.exists( "test.xml" ), "test.xml should exist" );
+            grunt.file.delete( "test.xml" );
+
+            test.done();
+        });
     }
 };
