@@ -43,7 +43,7 @@ module.exports = function( grunt ) {
                 }
 
                 if ( errorCount > 0 ) {
-                    grunt.log.ok( errorCount + " code style errors found!" );
+                    grunt.log.error( errorCount + " code style errors found!" );
 
                     done( false );
                 } else {
