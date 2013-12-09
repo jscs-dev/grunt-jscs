@@ -97,4 +97,4 @@ module.exports = {
 
         test.done();
     }
-}
+};
