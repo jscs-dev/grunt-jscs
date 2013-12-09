@@ -1,3 +1,7 @@
+"use stirct";
+
+var Checker = require( "jscs/lib/checker" );
+
 exports.init = function( grunt ) {
 
     // Task specific options
@@ -76,6 +80,20 @@ exports.init = function( grunt ) {
         }
 
         return isEmptyObject( _options ) ? false : _options;
+    }
+
+    /**
+     * Create new instance of jscs Checker module
+     * @param {Object} options
+     * @return {Checker}
+     */
+    exports.checker = function( options ) {
+        var checker = new Checker();
+
+        checker.registerDefaultRules();
+        checker.configure( this.getConfig( options ) );
+
+        return checker;
     }
 
     return exports;

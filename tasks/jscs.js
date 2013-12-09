@@ -2,21 +2,16 @@ module.exports = function( grunt ) {
     "use strict";
 
     var jscs = require( "./lib/jscs" ).init( grunt ),
-        Checker = require( "jscs/lib/checker" ),
         defaults = {
             config: ".jscs.json"
         };
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var errorCount, i,
-            checker = new Checker(),
             options = this.options( defaults ),
-            config = jscs.getConfig( options ),
+            checker = jscs.checker( options ),
             files = this.filesSrc,
             done = this.async();
-
-        checker.registerDefaultRules();
-        checker.configure( config );
 
         errorCount = i = 0;
 
