@@ -1,0 +1,4 @@
+{
+    "additionalRules": [ "../rules/*.js" ],
+    "testAdditionalRules": true
+}

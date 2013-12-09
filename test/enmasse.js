@@ -2,7 +2,7 @@
 
 var grunt = require( "grunt" );
 
-grunt.file.setBase( "test" );
+grunt.file.setBase( "test/enmasse" );
 
 exports.fail = function( test ) {
     grunt.util.spawn({
