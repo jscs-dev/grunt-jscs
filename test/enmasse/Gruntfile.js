@@ -9,7 +9,6 @@ module.exports = function( grunt ) {
                 },
                 options: {
                     config: "../configs/fail.json",
-                    junit: "jscs-output.xml"
                 }
             },
             success: {
@@ -18,7 +17,6 @@ module.exports = function( grunt ) {
                 },
                 options: {
                     config: "../configs/success.json",
-                    junit: "jscs-output.xml"
                 }
             },
             exclude: {
@@ -27,7 +25,6 @@ module.exports = function( grunt ) {
                 },
                 options: {
                     config: "../configs/exclude.json",
-                    junit: "jscs-output.xml"
                 }
             },
             additional: {
