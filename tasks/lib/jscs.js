@@ -1,6 +1,7 @@
 "use stirct";
 
 var Checker = require( "jscs/lib/checker" ),
+    path = require( "path" ),
     utils = require( "util" );
 
 exports.init = function( grunt ) {
@@ -130,25 +131,30 @@ exports.init = function( grunt ) {
             return defaultReporter;
         }
 
-        var module,
-            path = "jscs/lib/reporters/" + name;
+        var module;
 
         try {
             module = require( "jscs/lib/reporters/" + name );
         } catch ( _ ) {
             try {
-                module = require( name );
+                module = require( path.resolve( process.cwd(), name ) );
             } catch ( _ ) {}
         }
-
 
         if ( module ) {
             return module;
         }
 
         grunt.fatal( "Reporter \"" + name + "\" does not exist" );
-    }
+    },
 
+    /**
+     * Return reporter
+     * @return {Reporter}
+     */
+    JSCS.prototype.getReporter = function() {
+        return this._reporter;
+    }
 
     /**
      * Count and return errors
