@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
                     src: "../fixtures/fixture.js"
                 },
                 options: {
-                    config: "configs/fail.json",
+                    config: "../configs/fail.json",
                     junit: "jscs-output.xml"
                 }
             },
@@ -17,7 +17,7 @@ module.exports = function( grunt ) {
                     src: "../fixtures/fixture.js"
                 },
                 options: {
-                    config: "configs/success.json",
+                    config: "../configs/success.json",
                     junit: "jscs-output.xml"
                 }
             },
@@ -26,7 +26,7 @@ module.exports = function( grunt ) {
                     src: "../fixtures/exclude.js"
                 },
                 options: {
-                    config: "configs/exclude.json",
+                    config: "../configs/exclude.json",
                     junit: "jscs-output.xml"
                 }
             },
@@ -35,7 +35,7 @@ module.exports = function( grunt ) {
                     src: "../fixtures/fixture.js"
                 },
                 options: {
-                    config: "configs/additional.json"
+                    config: "../configs/additional.json"
                 }
             },
             config: "../fixtures/fixture.js"
