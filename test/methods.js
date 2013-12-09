@@ -1,7 +1,9 @@
 "use strict";
 
 var grunt = require( "grunt" ),
-    jscs = require( "../tasks/lib/jscs" ).init( grunt ),
+    JSCS = require( "../tasks/lib/jscs" ).init( grunt ),
+
+    proto = JSCS.prototype,
 
     hooker = require( "hooker" );
 
@@ -12,11 +14,11 @@ module.exports = {
                 config: "test/configs/example.json"
             };
 
-        result = jscs.getConfig( config );
+        result = proto.getConfig( config );
         test.equal( result.example, "test", "should find config at local path" );
 
         config.config = process.cwd() + "/" + config.config;
-        result = jscs.getConfig( config );
+        result = proto.getConfig( config );
         test.equal( result.example, "test", "should find config at absolute path" );
 
         config = {
@@ -24,7 +26,7 @@ module.exports = {
             config: "test.js"
         };
 
-        result = jscs.getConfig( config );
+        result = proto.getConfig( config );
 
         test.ok( !result.example, "should have find config file with inline option" );
         test.ok( !result.config, "config option should have been removed" );
@@ -53,7 +55,7 @@ module.exports = {
             once: true
         });
 
-        jscs.getConfig({});
+        proto.getConfig({});
     },
 
     "getConfig error with incorrect config": function( test ) {
@@ -68,7 +70,7 @@ module.exports = {
             once: true
         });
 
-        jscs.getConfig({
+        proto.getConfig({
             config: "not-existed"
         });
     },
@@ -76,34 +78,24 @@ module.exports = {
     findConfig: function( test ) {
         var result;
 
-        result = jscs.findConfig( "test/configs/example.json" );
+        result = proto.findConfig( "test/configs/example.json" );
 
         test.equal( result.example, "test", "should find config at local path" );
 
-        result = jscs.findConfig( process.cwd() + "/" + "test/configs/example.json" );
+        result = proto.findConfig( process.cwd() + "/" + "test/configs/example.json" );
         test.equal( result.example, "test", "should find config at absolute path" );
 
         test.done();
     },
 
     getOptions: function( test ) {
-        var options = jscs.getOptions({
+        var options = proto.getOptions({
             requireCurlyBraces: [ "if" ],
             config: "test.js"
         });
 
         test.ok( !options.config, "should remove task option" );
-        test.ok( !jscs.getOptions({}), "should return false if empty object was passed" );
-
-        test.done();
-    },
-
-    checker: function( test ) {
-        var checker = jscs.checker({
-            requireCurlyBraces: [ "if" ]
-        });
-
-        test.ok( checker.checkFile, "should return instance of a Checker class" );
+        test.ok( !proto.getOptions({}), "should return false if empty object was passed" );
 
         test.done();
     }

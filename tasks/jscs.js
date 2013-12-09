@@ -1,54 +1,28 @@
-module.exports = function( grunt ) {
-    "use strict";
+"use strict";
 
-    var jscs = require( "./lib/jscs" ).init( grunt ),
+var Vow = require( "vow" );
+
+module.exports = function( grunt ) {
+
+    var JSCS = require( "./lib/jscs" ).init( grunt ),
         defaults = {
             config: ".jscs.json"
         };
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
-        var errorCount, i,
-            options = this.options( defaults ),
-            checker = jscs.checker( options ),
-            files = this.filesSrc,
+        var options = this.options( defaults ),
+            jscs = new JSCS( options ),
+            checks = this.filesSrc.map(function( path ) {
+                return jscs.check( path );
+            }),
             done = this.async();
 
-        errorCount = i = 0;
+        Vow.all( checks ).then(function( results ) {
+            var errors = [].concat.apply( [], results );
 
-        function update() {
-            i++;
+            jscs.report( errors ).notify( errors );
 
-            // Does all promises have been run?
-            if ( i === files.length ) {
-                if ( errorCount > 0 ) {
-                    grunt.log.error( errorCount + " code style errors found!" );
-
-                    done( false );
-                } else {
-                    // Shows the number of OK files, as per #5
-                    grunt.log.ok( files.length + " files without code style errors." );
-
-                    done();
-                }
-            }
-        }
-
-        files.map( checker.checkFile, checker ).forEach(function( promise ) {
-            if ( !promise ) {
-                update();
-                return;
-            }
-
-            promise.then(function( errors ) {
-                if ( !errors.isEmpty() ) {
-                    errors.getErrorList().forEach(function( error ) {
-                        errorCount++;
-                        grunt.log.writeln( errors.explainError( error, true ) );
-                    });
-                }
-
-               update();
-           });
+            done( !jscs.count( errors ) );
         });
     });
 };
