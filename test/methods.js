@@ -1,7 +1,9 @@
 "use strict";
 
 var grunt = require( "grunt" ),
-    jscs = require( "../tasks/lib/jscs" ).init( grunt );
+    jscs = require( "../tasks/lib/jscs" ).init( grunt ),
+
+    hooker = require( "hooker" );
 
 module.exports = {
     getConfig: function( test ) {
@@ -37,6 +39,38 @@ module.exports = {
                 "\"requireCurlyBraces\" option should have been preserved" );
 
         test.done();
+    },
+
+    "getConfig error with empty object": function( test ) {
+        hooker.hook( grunt, "fatal", {
+            pre: function( message ) {
+                test.equal( message, "Nor config file nor inline options was found" );
+
+                test.done();
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        jscs.getConfig({});
+    },
+
+    "getConfig error with incorrect config": function( test ) {
+        hooker.hook( grunt, "fatal", {
+            pre: function( message ) {
+                test.equal( message, "The config file \"not-existed\" was not found" );
+
+                test.done();
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        jscs.getConfig({
+            config: "not-existed"
+        });
     },
 
     findConfig: function( test ) {
