@@ -26,6 +26,17 @@ exports.success = function( test ) {
     });
 };
 
+exports.inline = function( test ) {
+    grunt.util.spawn({
+        cmd: "grunt",
+        args: [ "jscs:inline" ]
+    }, function( error, result ) {
+        test.equal( grunt.file.read( "expectations/inline" ), result.stdout );
+
+        test.done();
+    });
+};
+
 exports.exclude = function( test ) {
     grunt.util.spawn({
         cmd: "grunt",

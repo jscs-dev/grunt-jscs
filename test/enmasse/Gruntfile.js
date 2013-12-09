@@ -19,6 +19,14 @@ module.exports = function( grunt ) {
                     config: "../configs/success.json",
                 }
             },
+            inline: {
+                files: {
+                    src: "../fixtures/fixture.js"
+                },
+                options: {
+                    "requireCurlyBraces": [ "while" ]
+                }
+            },
             exclude: {
                 files: {
                     src: "../fixtures/exclude.js"
