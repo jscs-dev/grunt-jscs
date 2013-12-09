@@ -157,14 +157,25 @@ exports.init = function( grunt ) {
     }
 
     /**
-     * Count and return errors
+     * Set errors collection as instance property
      * @param {errorsCollection} errorsCollection
+     * @return {Number}
+     */
+    JSCS.prototype.setErrors = function( errorsCollection ) {
+        this._errors = errorsCollection;
+
+        return this;
+    }
+
+    /**
+     * Count and return errors
+     * @param {errorsCollection} [errorsCollection]
      * @return {Number}
      */
     JSCS.prototype.count = function( errorsCollection ) {
         var result = 0;
 
-        errorsCollection.forEach(function( errors ) {
+        ( errorsCollection || this._errors ).forEach(function( errors ) {
             result += errors.getErrorCount();
         });
 
@@ -173,21 +184,23 @@ exports.init = function( grunt ) {
 
     /**
      * Send errors to the reporter
-     * @param {errorsCollection} errorsCollection
+     * @param {errorsCollection} [errorsCollection]
      * @return {JSCS}
      */
     JSCS.prototype.report = function( errorsCollection ) {
-        this._result = this._reporter( errorsCollection );
+        this._result = this._reporter( errorsCollection || this._errors );
 
         return this;
     }
 
     /**
      * Print number of found errors
-     * @param {errorsCollection} errorsCollection
+     * @param {errorsCollection} [errorsCollection]
      * @return {JSCS}
      */
     JSCS.prototype.notify = function( errorsCollection ) {
+        errorsCollection = errorsCollection || this._errors;
+
         var errorCount = this.count( errorsCollection );
 
         if ( errorCount ) {
