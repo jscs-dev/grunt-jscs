@@ -31,7 +31,8 @@ module.exports = function( grunt ) {
             src: "<%= jshint.all %>"
         },
         nodeunit: {
-            test: "test/test.js"
+            enmasse: "test/enmasse.js",
+            methods: "test/methods.js"
         }
     });
 

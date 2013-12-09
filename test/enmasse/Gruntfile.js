@@ -5,7 +5,7 @@ module.exports = function( grunt ) {
         jscs: {
             fail: {
                 files: {
-                    src: "fixtures/fixture.js"
+                    src: "../fixtures/fixture.js"
                 },
                 options: {
                     config: "configs/fail.json",
@@ -14,7 +14,7 @@ module.exports = function( grunt ) {
             },
             success: {
                 files: {
-                    src: "fixtures/fixture.js"
+                    src: "../fixtures/fixture.js"
                 },
                 options: {
                     config: "configs/success.json",
@@ -23,7 +23,7 @@ module.exports = function( grunt ) {
             },
             exclude: {
                 files: {
-                    src: "fixtures/exclude.js"
+                    src: "../fixtures/exclude.js"
                 },
                 options: {
                     config: "configs/exclude.json",
@@ -32,16 +32,16 @@ module.exports = function( grunt ) {
             },
             additional: {
                 files: {
-                    src: "fixtures/fixture.js"
+                    src: "../fixtures/fixture.js"
                 },
                 options: {
                     config: "configs/additional.json"
                 }
             },
-            config: "fixtures/fixture.js"
+            config: "../fixtures/fixture.js"
         }
     });
 
-    grunt.loadTasks( "../tasks" );
+    grunt.loadTasks( "../../tasks" );
     grunt.registerTask( "default", "jscs" );
 };
