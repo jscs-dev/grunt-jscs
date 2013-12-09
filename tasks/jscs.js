@@ -2,6 +2,7 @@ module.exports = function( grunt ) {
     "use strict";
 
     var fs = require( "fs" ),
+        jscs = require( "./lib/jscs" ).init( grunt ),
         builder = require( "xmlbuilder" ),
         Checker = require( "jscs/lib/checker" ),
         defaults = {
@@ -10,26 +11,15 @@ module.exports = function( grunt ) {
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var errorCount, i,
-            jscs = new Checker(),
+            checker = new Checker(),
             options = this.options( defaults ),
-            cfgPath = options.config,
+            config = jscs.getConfig( options ),
             files = this.filesSrc,
             done = this.async(),
             junitXML = options.junit ? builder.create( "testsuites" ) : null;
 
-        if ( !grunt.file.isPathAbsolute( cfgPath ) ) {
-            // Prepend the cwd, as jscs does via CLI
-            cfgPath = process.cwd() + "/" + options.config;
-        }
-
-        if ( !fs.existsSync( cfgPath ) ) {
-            // Can go further without an config file.
-            // TODO: Accept all jscs configs in the options object.
-            grunt.fail.fatal( "The config file " + options.config + " was not found!" );
-        }
-
-        jscs.registerDefaultRules();
-        jscs.configure( require( cfgPath ) );
+        checker.registerDefaultRules();
+        checker.configure( config );
 
         errorCount = i = 0;
 
@@ -65,7 +55,7 @@ module.exports = function( grunt ) {
             }
         }
 
-        files.map( jscs.checkFile, jscs ).forEach(function( promise ) {
+        files.map( checker.checkFile, checker ).forEach(function( promise ) {
             if ( !promise ) {
                 update();
                 return;
