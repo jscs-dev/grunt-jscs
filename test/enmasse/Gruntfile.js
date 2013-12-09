@@ -19,39 +19,6 @@ module.exports = function( grunt ) {
                     config: "../configs/success.json",
                 }
             },
-            inline: {
-                files: {
-                    src: "../fixtures/fixture.js"
-                },
-                options: {
-                    "requireCurlyBraces": [ "while" ]
-                }
-            },
-            exclude: {
-                files: {
-                    src: "../fixtures/exclude.js"
-                },
-                options: {
-                    config: "../configs/exclude.json",
-                }
-            },
-            additional: {
-                files: {
-                    src: "../fixtures/fixture.js"
-                },
-                options: {
-                    config: "../configs/additional.json"
-                }
-            },
-            reporter: {
-                files: {
-                    src: "../fixtures/fixture.js"
-                },
-                options: {
-                    reporter: "checkstyle",
-                    config: "../configs/fail.json"
-                }
-            },
             config: "../fixtures/fixture.js"
         }
     });

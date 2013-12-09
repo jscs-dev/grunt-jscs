@@ -171,5 +171,33 @@ module.exports = {
         });
 
         fixture.notify();
+    },
+
+    excludes: function( test ) {
+        var jscs = new JSCS({
+            "requireCurlyBraces": [ "while" ],
+            "excludeFiles": [ "test/fixtures/exclude.js" ]
+        });
+
+        jscs.check( "test/fixtures/exclude.js" ).then(function( errors ) {
+            test.equal( jscs.count( errors ), 0, "should not find any errors in excluded file" );
+            test.done();
+        });
+    },
+
+    additional: function( test ) {
+         var jscs = new JSCS({
+            "additionalRules": [ "test/rules/*.js" ],
+            "testAdditionalRules": true
+        });
+
+        jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
+            errorsCollection.forEach(function( errors ) {
+                errors.getErrorList().forEach(function( error ) {
+                    test.equal( error.message, "test", "should add additional rule");
+                });
+                test.done();
+            });
+        });
     }
 };
