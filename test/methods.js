@@ -96,5 +96,15 @@ module.exports = {
         test.ok( !jscs.getOptions({}), "should return false if empty object was passed" );
 
         test.done();
+    },
+
+    checker: function( test ) {
+        var checker = jscs.checker({
+            requireCurlyBraces: [ "if" ]
+        });
+
+        test.ok( checker.checkFile, "should return instance of a Checker class" );
+
+        test.done();
     }
 };
