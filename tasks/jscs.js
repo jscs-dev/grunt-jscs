@@ -1,8 +1,7 @@
 module.exports = function( grunt ) {
     "use strict";
 
-    var fs = require( "fs" ),
-        jscs = require( "./lib/jscs" ).init( grunt ),
+    var jscs = require( "./lib/jscs" ).init( grunt ),
         builder = require( "xmlbuilder" ),
         Checker = require( "jscs/lib/checker" ),
         defaults = {
