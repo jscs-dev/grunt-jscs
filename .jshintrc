@@ -1,5 +1,5 @@
 {
-	"maxlen": 100,
+    "maxlen": 100,
     "boss": true,
     "curly": true,
     "eqeqeq": true,
