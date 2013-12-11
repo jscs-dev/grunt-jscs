@@ -10,7 +10,7 @@ module.exports = function( grunt ) {
     };
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
-        var errorCount, i;
+        var errorCount, completed;
         var jscs = new Checker();
         var options = this.options( defaults );
         var cfgPath = options.config;
@@ -32,7 +32,8 @@ module.exports = function( grunt ) {
         jscs.registerDefaultRules();
         jscs.configure( require( cfgPath ) );
 
-        errorCount = i = 0;
+        errorCount = 0;
+        completed = 0;
 
         if ( junitXML ) {
             junitXML.ele( "testsuite", {
@@ -42,10 +43,10 @@ module.exports = function( grunt ) {
         }
 
         function update() {
-            i++;
+            completed++;
 
             // Does all promises have been run?
-            if ( i === files.length ) {
+            if ( completed === files.length ) {
                 if ( junitXML ) {
                     junitXML.att( "tests", files.length );
                     junitXML.att( "errors", errorCount );
@@ -54,7 +55,7 @@ module.exports = function( grunt ) {
                 }
 
                 if ( errorCount > 0 ) {
-                    grunt.log.ok( errorCount + " code style errors found!" );
+                    grunt.log.error( errorCount + " code style errors found!" );
 
                     done( false );
                 } else {
@@ -91,7 +92,9 @@ module.exports = function( grunt ) {
                 }
 
                update();
-           });
+           }, function( error ) {
+                grunt.fail.warn(error);
+            });
         });
     });
 };

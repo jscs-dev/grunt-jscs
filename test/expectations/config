@@ -3,7 +3,7 @@
  [90m    1 |[39mwhile (false);
 [90m--------^[39m
  [90m    2 |[39m
-[32m>> [39m1 code style errors found!
+[31m>> [39m1 code style errors found!
 [33mWarning: Task "jscs:config" failed. Use --force to continue.[39m
 
 [31mAborted due to warnings.[39m
