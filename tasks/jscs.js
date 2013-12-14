@@ -4,23 +4,21 @@ var Vow = require( "vow" );
 
 module.exports = function( grunt ) {
 
-    var JSCS = require( "./lib/jscs" ).init( grunt ),
-        defaults = {
-            config: ".jscs.json"
-        };
+    var concat = Array.prototype.concat,
+        JSCS = require( "./lib/jscs" ).init( grunt );
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
-        var options = this.options( defaults ),
+        var done = this.async(),
+            options = this.options({
+                config: ".jscs.json"
+            }),
             jscs = new JSCS( options ),
             checks = this.filesSrc.map(function( path ) {
                 return jscs.check( path );
-            }),
-            done = this.async();
+            });
 
         Vow.all( checks ).then(function( results ) {
-            var errors = [].concat.apply( [], results );
-
-            jscs.setErrors( errors ).report().notify();
+            jscs.setErrors( concat.apply( [], results ) ).report().notify();
 
             done( options.force ? true : !jscs.count() );
         });
