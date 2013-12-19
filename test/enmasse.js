@@ -1,6 +1,10 @@
 "use strict";
 
-var grunt = require( "grunt" );
+var grunt = require( "grunt" ),
+    read = function( file, options ) {
+        var contents = grunt.file.read( file, options );
+        return contents.split( "\r\n" ).join( "\n" );
+    };
 
 grunt.file.setBase( "test/enmasse" );
 
@@ -9,7 +13,7 @@ exports.fail = function( test ) {
         cmd: "grunt",
         args: [ "jscs:fail" ]
     }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/fail" ), result.stdout );
+        test.equal( read( "expectations/fail" ), result.stdout );
 
         test.done();
     });
@@ -20,7 +24,7 @@ exports.force = function( test ) {
         cmd: "grunt",
         args: [ "jscs:force" ]
     }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/force" ), result.stdout );
+        test.equal( read( "expectations/force" ), result.stdout );
 
         test.done();
     });
@@ -31,7 +35,7 @@ exports.success = function( test ) {
         cmd: "grunt",
         args: [ "jscs:success" ]
     }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/success" ), result.stdout );
+        test.equal( read( "expectations/success" ), result.stdout );
 
         test.done();
     });
@@ -42,7 +46,7 @@ exports.all = function( test ) {
         cmd: "grunt",
         args: [ "jscs" ]
     }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/all" ), result.stdout );
+        test.equal( read( "expectations/all" ), result.stdout );
 
         test.done();
     });
@@ -53,7 +57,7 @@ exports.config = function( test ) {
         cmd: "grunt",
         args: [ "jscs:config" ]
     }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/config" ), result.stdout );
+        test.equal( read( "expectations/config" ), result.stdout );
 
         test.done();
     });
