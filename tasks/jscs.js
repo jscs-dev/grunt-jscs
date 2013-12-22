@@ -17,7 +17,7 @@ module.exports = function( grunt ) {
                 return jscs.check( path );
             });
 
-        Vow.all( checks ).then(function( results ) {
+        Vow.any( checks ).then(function( results ) {
             jscs.setErrors( concat.apply( [], results ) ).report().notify();
 
             done( options.force ? true : !jscs.count() );

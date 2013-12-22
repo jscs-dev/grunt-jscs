@@ -60,7 +60,13 @@ exports.init = function( grunt ) {
      * @see Checker#checkPath
      */
     JSCS.prototype.check = function( path ) {
-        return this.checker.checkPath( path );
+        var checkPath = this.checker.checkPath( path );
+
+        checkPath.fail(function( error ) {
+            grunt.warn( error );
+        });
+
+        return checkPath;
     }
 
     /**

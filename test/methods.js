@@ -223,5 +223,24 @@ module.exports = {
 
             test.done();
         });
+    },
+
+    "Don't break on syntax error": function( test ) {
+        hooker.hook( grunt, "warn", {
+            pre: function( message ) {
+                test.ok( message.toString().length, "error message should not be empty" );
+
+                test.done();
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        var jscs = new JSCS({
+            "requireCurlyBraces": [ "while" ],
+        });
+
+        jscs.check( "test/fixtures/broken.js" );
     }
 };

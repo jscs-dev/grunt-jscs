@@ -1,0 +1,4 @@
+[4mRunning "jscs:broken" (jscs) task[24m
+[33mWarning: Syntax error at ../fixtures/broken.js: Line 3: Unexpected end of input Use --force to continue.[39m
+
+[31mAborted due to warnings.[39m

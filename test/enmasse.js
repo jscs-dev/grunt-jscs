@@ -15,6 +15,17 @@ exports.fail = function( test ) {
     });
 };
 
+exports.fail = function( test ) {
+    grunt.util.spawn({
+        cmd: "grunt",
+        args: [ "jscs:broken" ]
+    }, function( error, result ) {
+        test.equal( grunt.file.read( "expectations/broken" ), result.stdout );
+
+        test.done();
+    });
+};
+
 exports.force = function( test ) {
     grunt.util.spawn({
         cmd: "grunt",

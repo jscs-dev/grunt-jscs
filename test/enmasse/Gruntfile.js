@@ -11,6 +11,15 @@ module.exports = function( grunt ) {
                     config: "../configs/fail.json"
                 }
             },
+            broken: {
+                files: {
+                    src: [ "../fixtures/broken.js", "../fixtures/fixture.js" ]
+                },
+                options: {
+                    config: "../configs/fail.json",
+                    force: true
+                }
+            },
             force: {
                 files: {
                     src: "../fixtures/fixture.js"
