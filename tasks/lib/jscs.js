@@ -87,7 +87,7 @@ exports.init = function( grunt ) {
                 grunt.fatal( "The config file \"" + filePath + "\" was not found" );
 
             } else if ( filePath ) {
-                grunt.fatal( "\"" + filePath + "\" is empty" );
+                grunt.fatal( "\"" + filePath + "\" config is empty" );
 
             } else {
                 grunt.fatal( "Nor config file nor inline options weren't found" );

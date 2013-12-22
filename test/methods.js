@@ -95,6 +95,25 @@ module.exports = {
         } catch( _ ) {}
     },
 
+    "getConfig – with empty config": function( test ) {
+        hooker.hook( grunt, "fatal", {
+            pre: function( message ) {
+                test.equal( message, "\"test/configs/empty.json\" config is empty" );
+
+                test.done();
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        try {
+            new JSCS({
+                config: "test/configs/empty.json"
+            });
+        } catch( _ ) {}
+    },
+
     "getConfig – with inline options": function( test ) {
         var config = new JSCS({
             requireCurlyBraces: [ "if" ],
