@@ -35,7 +35,7 @@ Default value: `.jscs.json`
 
 The path to the jscs configuration file.
 
-*If both jscs properties and config option are specified they will be merged together –*
+*If both jscs settings and config option are specified, then they will merge together –*
 ```js
 jscs: {
     src: "path/to/files/*.js",
