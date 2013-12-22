@@ -4,7 +4,7 @@ var Vow = require( "vow" );
 
 module.exports = function( grunt ) {
 
-    var concat = Array.prototype.concat,
+    var filter = Array.prototype.filter,
         JSCS = require( "./lib/jscs" ).init( grunt );
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
@@ -15,8 +15,18 @@ module.exports = function( grunt ) {
                 return jscs.check( path );
             });
 
-        Vow.any( checks ).then(function( results ) {
-            jscs.setErrors( concat.apply( [], results ) ).report().notify();
+        Vow.allResolved( checks ).spread(function() {
+
+            // Filter unsuccessful promises
+            var results = filter.call( arguments, function( promise ) {
+                return promise.isFulfilled();
+
+            // Make array of errors
+            }).map(function( promise ) {
+                return promise.valueOf()[ 0 ];
+            });
+
+            jscs.setErrors( results ).report().notify();
 
             done( options.force ? true : !jscs.count() );
         });
