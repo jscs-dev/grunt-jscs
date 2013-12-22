@@ -58,14 +58,3 @@ exports.all = function( test ) {
         test.done();
     });
 };
-
-exports.config = function( test ) {
-    grunt.util.spawn({
-        cmd: "grunt",
-        args: [ "jscs:config" ]
-    }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/config" ), result.stdout );
-
-        test.done();
-    });
-};

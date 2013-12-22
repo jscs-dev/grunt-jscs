@@ -37,7 +37,15 @@ module.exports = function( grunt ) {
                     config: "../configs/success.json"
                 }
             },
-            config: "../fixtures/fixture.js"
+            inline: {
+                files: {
+                    src: "../fixtures/fixture.js"
+                },
+                options: {
+                    "requireCurlyBraces": [ "while" ],
+                    force: true
+                }
+            }
         }
     });
 
