@@ -15,6 +15,8 @@ module.exports = function( grunt ) {
                 return jscs.check( path );
             });
 
+        grunt.option( "force", options.force );
+
         Vow.allResolved( checks ).spread(function() {
 
             // Filter unsuccessful promises
@@ -28,7 +30,7 @@ module.exports = function( grunt ) {
 
             jscs.setErrors( results ).report().notify();
 
-            done( options.force ? true : !jscs.count() );
+            done( !jscs.count() );
         });
     });
 };

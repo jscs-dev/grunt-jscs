@@ -15,7 +15,7 @@ exports.fail = function( test ) {
     });
 };
 
-exports.fail = function( test ) {
+exports.broken = function( test ) {
     grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:broken" ]

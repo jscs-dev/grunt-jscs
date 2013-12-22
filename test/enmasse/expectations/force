@@ -4,5 +4,6 @@
 [90m--------^[39m
  [90m    2 |[39m
 [31m>> [39m1 code style errors found!
+[33mWarning: Task "jscs:force" failed. [4mUsed --force, continuing.[24m[39m
 
-[32mDone, without errors.[39m
+[31mDone, but with warnings.[39m
