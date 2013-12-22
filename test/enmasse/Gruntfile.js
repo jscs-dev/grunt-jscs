@@ -13,7 +13,7 @@ module.exports = function( grunt ) {
             },
             broken: {
                 files: {
-                    src: [ "../fixtures/broken.js", "../fixtures/fixture.js", "../fixtures/fixture.js" ]
+                    src: [ "../fixtures/broken.js", "../fixtures/fixture.js" ]
                 },
                 options: {
                     config: "../configs/fail.json",
