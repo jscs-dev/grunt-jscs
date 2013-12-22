@@ -3,13 +3,15 @@
 var path = require( "path" ),
     utils = require( "util" ),
 
-    Checker = require( "jscs/lib/checker" )
+    Checker = require( "jscs/lib/checker" ),
+
+    assign = require( "lodash.assign" ),
     hooker = require( "hooker" );
 
 exports.init = function( grunt ) {
 
     // Task specific options
-    var taskOptions = [ "config", "reporter", "reporterOutput" ];
+    var taskOptions = [ "config", "force", "reporter", "reporterOutput" ];
 
     /**
      * @see jQuery.isEmptyObject
@@ -74,12 +76,18 @@ exports.init = function( grunt ) {
      * @return {Object}
      */
     JSCS.prototype.getConfig = function() {
-        var options = this.options || {},
-            config = options.config ? this.findConfig() : this.getOptions();
+        var filePath = this.options.config,
+            config = this.findConfig(),
+            options = this.getOptions();
 
-        if ( !config ) {
-            if ( options.config ) {
-                grunt.fatal( "The config file \"" + options.config + "\" was not found" );
+        assign( config, options );
+
+        if ( isEmptyObject( config ) ) {
+            if ( filePath && !grunt.file.exists( filePath ) ) {
+                grunt.fatal( "The config file \"" + filePath + "\" was not found" );
+
+            } else if ( filePath ) {
+                grunt.fatal( "\"" + filePath + "\" is empty" );
 
             } else {
                 grunt.fatal( "Nor config file nor inline options weren't found" );
@@ -91,25 +99,25 @@ exports.init = function( grunt ) {
 
     /**
      * Read config file
-     * @return {Boolean|Object}
+     * @return {Object}
      */
-    JSCS.prototype.findConfig = function() {
-        var configPath = this.options && this.options.config;
+     JSCS.prototype.findConfig = function() {
+        var configPath = this.options && this.options.config || ".jscs.json";
 
         if ( !grunt.file.isPathAbsolute( configPath ) ) {
-            configPath = path.resolve( process.cwd(), configPath );
+            configPath = path.join( process.cwd(), configPath );
         }
 
         if ( grunt.file.exists( configPath ) ) {
             return grunt.file.readJSON( configPath );
         }
 
-        return false;
+        return {};
     }
 
     /**
      * Get inline options
-     * @return {Boolean|Object}
+     * @return {Object}
      */
     JSCS.prototype.getOptions = function() {
         var _options = {};
@@ -124,7 +132,7 @@ exports.init = function( grunt ) {
             }
         }
 
-        return isEmptyObject( _options ) ? false : _options;
+        return _options;
     }
 
     /**

@@ -9,9 +9,7 @@ module.exports = function( grunt ) {
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var done = this.async(),
-            options = this.options({
-                config: ".jscs.json"
-            }),
+            options = this.options(),
             jscs = new JSCS( options ),
             checks = this.filesSrc.map(function( path ) {
                 return jscs.check( path );
