@@ -94,16 +94,14 @@ exports.init = function( grunt ) {
      * @return {Boolean|Object}
      */
     JSCS.prototype.findConfig = function() {
-        var path = this.options && this.options.config;
+        var configPath = this.options && this.options.config;
 
-        if ( !grunt.file.isPathAbsolute( path ) ) {
-
-            // Prepend the cwd, as jscs does via CLI
-            path = process.cwd() + "/" + path;
+        if ( !grunt.file.isPathAbsolute( configPath ) ) {
+            configPath = path.resolve( process.cwd(), configPath );
         }
 
-        if ( grunt.file.exists( path ) ) {
-            return grunt.file.readJSON( path );
+        if ( grunt.file.exists( configPath ) ) {
+            return grunt.file.readJSON( configPath );
         }
 
         return false;
