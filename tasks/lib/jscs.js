@@ -186,10 +186,10 @@ exports.init = function( grunt ) {
      * @param {errorsCollection} [errorsCollection]
      * @return {Number}
      */
-    JSCS.prototype.count = function( errorsCollection ) {
+    JSCS.prototype.count = function() {
         var result = 0;
 
-        ( errorsCollection || this._errors ).forEach(function( errors ) {
+        this._errors.forEach(function( errors ) {
             result += errors.getErrorCount();
         });
 
@@ -198,10 +198,9 @@ exports.init = function( grunt ) {
 
     /**
      * Send errors to the reporter
-     * @param {errorsCollection} [errorsCollection]
      * @return {JSCS}
      */
-    JSCS.prototype.report = function( errorsCollection ) {
+    JSCS.prototype.report = function() {
         var options = this.options,
             shouldHook = options.reporter && options.reporterOutput;
 
@@ -215,7 +214,7 @@ exports.init = function( grunt ) {
             });
         }
 
-        this._result = this._reporter( errorsCollection || this._errors );
+        this._result = this._reporter( this._errors );
 
         if ( shouldHook ) {
             hooker.unhook( process.stdout, "write" );
@@ -226,19 +225,16 @@ exports.init = function( grunt ) {
 
     /**
      * Print number of found errors
-     * @param {errorsCollection} [errorsCollection]
      * @return {JSCS}
      */
-    JSCS.prototype.notify = function( errorsCollection ) {
-        errorsCollection = errorsCollection || this._errors;
-
-        var errorCount = this.count( errorsCollection );
+    JSCS.prototype.notify = function() {
+        var errorCount = this.count();
 
         if ( errorCount ) {
             grunt.log.error( errorCount + " code style errors found!" );
 
         } else {
-            grunt.log.ok( errorsCollection.length + " files without code style errors." );
+            grunt.log.ok( this._errors.length + " files without code style errors." );
         }
 
         return this;

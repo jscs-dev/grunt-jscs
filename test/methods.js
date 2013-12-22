@@ -178,7 +178,9 @@ module.exports = {
     },
 
     count: function( test ) {
-        test.equal( fixture.count( errors ), 1, "should correctly count errors" );
+        fixture.setErrors( errors );
+
+        test.equal( fixture.count(), 1, "should correctly count errors" );
 
         test.done();
     },
@@ -220,7 +222,8 @@ module.exports = {
         });
 
         jscs.check( "test/fixtures/exclude.js" ).then(function( errors ) {
-            test.equal( jscs.count( errors ), 0, "should not find any errors in excluded file" );
+            test.equal( jscs.setErrors( errors ).count(), 0,
+                "should not find any errors in excluded file" );
             test.done();
         });
     },
@@ -250,7 +253,7 @@ module.exports = {
         });
 
         jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
-            jscs.report( errorsCollection );
+            jscs.setErrors( errorsCollection ).report();
 
             test.ok( grunt.file.exists( "test.xml" ), "test.xml should exist" );
             grunt.file.delete( "test.xml" );
