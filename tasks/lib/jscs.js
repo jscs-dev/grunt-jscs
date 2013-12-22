@@ -82,7 +82,7 @@ exports.init = function( grunt ) {
                 grunt.fatal( "The config file \"" + options.config + "\" was not found" );
 
             } else {
-                grunt.fatal( "Nor config file nor inline options was found" );
+                grunt.fatal( "Nor config file nor inline options weren't found" );
             }
         }
 

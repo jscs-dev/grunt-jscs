@@ -62,7 +62,7 @@ module.exports = {
     "getConfig error with empty object": function( test ) {
         hooker.hook( grunt, "fatal", {
             pre: function( message ) {
-                test.equal( message, "Nor config file nor inline options was found" );
+                test.equal( message, "Nor config file nor inline options weren't found" );
 
                 test.done();
                 return hooker.preempt();
