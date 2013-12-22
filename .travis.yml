@@ -1,4 +1,3 @@
-before_install: npm install -g grunt-cli
 install: npm install -d
 language: node_js
 node_js:

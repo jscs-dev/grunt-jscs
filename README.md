@@ -35,6 +35,17 @@ Default value: `.jscs.json`
 
 The path to the jscs configuration file.
 
+*If both jscs settings and config option are specified, then they will merge together –*
+```js
+jscs: {
+    src: "path/to/files/*.js",
+    options: {
+        config: ".jscs.json",
+        requireCurlyBraces: [ "if" ]
+    }
+}
+```
+
 #### force
 Type: `Boolean`
 Default value: `false`
@@ -73,6 +84,5 @@ jscs: {
             src: "happy-hippo.js"
         }
     }
-}
 }
 ```

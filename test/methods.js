@@ -59,10 +59,10 @@ module.exports = {
         test.done();
     },
 
-    "getConfig error with empty object": function( test ) {
+    "getConfig – error with empty object": function( test ) {
         hooker.hook( grunt, "fatal", {
             pre: function( message ) {
-                test.equal( message, "Nor config file nor inline options was found" );
+                test.equal( message, "Nor config file nor inline options weren't found" );
 
                 test.done();
                 return hooker.preempt();
@@ -76,7 +76,7 @@ module.exports = {
         } catch( _ ) {}
     },
 
-    "getConfig error with incorrect config": function( test ) {
+    "getConfig – error with incorrect config": function( test ) {
         hooker.hook( grunt, "fatal", {
             pre: function( message ) {
                 test.equal( message, "The config file \"not-existed\" was not found" );
@@ -93,6 +93,58 @@ module.exports = {
                 config: "not-existed"
             });
         } catch( _ ) {}
+    },
+
+    "getConfig – with empty config": function( test ) {
+        hooker.hook( grunt, "fatal", {
+            pre: function( message ) {
+                test.equal( message, "\"test/configs/empty.json\" config is empty" );
+
+                test.done();
+                return hooker.preempt();
+            },
+
+            once: true
+        });
+
+        try {
+            new JSCS({
+                config: "test/configs/empty.json"
+            });
+        } catch( _ ) {}
+    },
+
+    "getConfig – with inline options": function( test ) {
+        var config = new JSCS({
+            requireCurlyBraces: [ "if" ],
+            config: "config",
+            force: true,
+            reporterOutput: "reporterOutput",
+            reporter: ""
+        }).getConfig();
+
+        test.ok( !config.config, "config option should be removed" );
+        test.ok( !config.force, "force option should be removed" );
+        test.ok( !config.reporterOuput, "reporterOuput option should be removed" );
+        test.ok( !config.reporter, "reporter option should be removed" );
+        test.ok( !!config.requireCurlyBraces, "requireCurlyBraces should stay" );
+
+        test.done();
+    },
+
+    "getConfig – merge inline and config options": function( test ) {
+        var config = new JSCS({
+            requireCurlyBraces: [ "if" ],
+            config: "merge.json",
+            disallowMultipleVarDecl: true
+        }).getConfig();
+
+        test.equal( config.requireCurlyBraces[ 0 ], "if",
+            "inline option should rewrite config one" );
+        test.ok( config.disallowMultipleVarDecl,
+            "\"disallowMultipleVarDecl\" option should be present" );
+
+        test.done();
     },
 
     findConfig: function( test ) {
@@ -145,7 +197,9 @@ module.exports = {
     },
 
     count: function( test ) {
-        test.equal( fixture.count( errors ), 1, "should correctly count errors" );
+        fixture.setErrors( errors );
+
+        test.equal( fixture.count(), 1, "should correctly count errors" );
 
         test.done();
     },
@@ -187,7 +241,8 @@ module.exports = {
         });
 
         jscs.check( "test/fixtures/exclude.js" ).then(function( errors ) {
-            test.equal( jscs.count( errors ), 0, "should not find any errors in excluded file" );
+            test.equal( jscs.setErrors( errors ).count(), 0,
+                "should not find any errors in excluded file" );
             test.done();
         });
     },
@@ -195,7 +250,8 @@ module.exports = {
     additional: function( test ) {
          var jscs = new JSCS({
             "additionalRules": [ "test/rules/*.js" ],
-            "testAdditionalRules": true
+            "testAdditionalRules": true,
+            config: "empty"
         });
 
         jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
@@ -216,7 +272,7 @@ module.exports = {
         });
 
         jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
-            jscs.report( errorsCollection );
+            jscs.setErrors( errorsCollection ).report();
 
             test.ok( grunt.file.exists( "test.xml" ), "test.xml should exist" );
             grunt.file.delete( "test.xml" );

@@ -28,7 +28,10 @@ module.exports = function( grunt ) {
             all: [ "Gruntfile.js", "tasks/*.js", "test/*.js" ]
         },
         jscs: {
-            src: "<%= jshint.all %>"
+            src: "<%= jshint.all %>",
+            options: {
+                preset: "jquery"
+            }
         },
         nodeunit: {
             methods: "test/methods.js",

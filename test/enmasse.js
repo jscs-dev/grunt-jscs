@@ -15,7 +15,7 @@ exports.fail = function( test ) {
     });
 };
 
-exports.fail = function( test ) {
+exports.broken = function( test ) {
     grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:broken" ]
@@ -54,17 +54,6 @@ exports.all = function( test ) {
         args: [ "jscs" ]
     }, function( error, result ) {
         test.equal( grunt.file.read( "expectations/all" ), result.stdout );
-
-        test.done();
-    });
-};
-
-exports.config = function( test ) {
-    grunt.util.spawn({
-        cmd: "grunt",
-        args: [ "jscs:config" ]
-    }, function( error, result ) {
-        test.equal( grunt.file.read( "expectations/config" ), result.stdout );
 
         test.done();
     });
