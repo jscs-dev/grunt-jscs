@@ -196,6 +196,18 @@ module.exports = {
         test.done();
     },
 
+    setErrors: function( test ) {
+        var filteredErrors;
+
+        errors.push( undefined );
+        fixture.setErrors( errors );
+
+        filteredErrors = fixture.getErrors();
+
+        test.ok( filteredErrors.pop(), "should filter undefined values" );
+        test.done();
+    },
+
     count: function( test ) {
         fixture.setErrors( errors );
 

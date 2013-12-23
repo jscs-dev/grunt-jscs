@@ -173,12 +173,23 @@ exports.init = function( grunt ) {
     /**
      * Set errors collection as instance property
      * @param {errorsCollection} errorsCollection
-     * @return {Number}
      */
     JSCS.prototype.setErrors = function( errorsCollection ) {
-        this._errors = errorsCollection;
+
+        // Filter excluded files ("excludeFiles" option)
+        this._errors = errorsCollection.filter(function( errors ) {
+            return errors;
+        });
 
         return this;
+    }
+
+    /**
+     * Return instance errors
+     * @return {Array}
+     */
+    JSCS.prototype.getErrors = function() {
+        return this._errors;
     }
 
     /**
