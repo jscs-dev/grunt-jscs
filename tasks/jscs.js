@@ -10,12 +10,15 @@ module.exports = function( grunt ) {
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var done = this.async(),
             options = this.options(),
+
+            // either if it was configured with that option or passed through cli command
+            force = grunt.option( "force" ) || options.force,
             jscs = new JSCS( options ),
             checks = this.filesSrc.map(function( path ) {
                 return jscs.check( path );
             });
 
-        grunt.option( "force", options.force );
+        grunt.option( "force", force );
 
         Vow.allResolved( checks ).spread(function() {
 
