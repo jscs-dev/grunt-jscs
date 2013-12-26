@@ -4,8 +4,13 @@
     "version": "0.3.0",
     "author": {
         "name": "Gustavo Henke",
+        "email": "gustavo@injoin.com.br",
         "url":  "https://github.com/gustavohenke"
     },
+    "contributors": [{
+        "name": "Oleg",
+        "email": "markelog@gmail.com"
+    }],
     "repository": {
         "type": "git",
         "url":  "git://github.com/gustavohenke/grunt-jscs-checker.git"
