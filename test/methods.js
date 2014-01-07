@@ -287,6 +287,8 @@ module.exports = {
             jscs.setErrors( errorsCollection ).report();
 
             test.ok( grunt.file.exists( "test.xml" ), "test.xml should exist" );
+            test.notEqual( grunt.file.read( "test.xml" ), "</checkstyle>\n",
+                "test.xml should be more than last console.log" );
             grunt.file.delete( "test.xml" );
 
             test.done();
