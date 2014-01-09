@@ -213,12 +213,13 @@ exports.init = function( grunt ) {
      */
     JSCS.prototype.report = function() {
         var options = this.options,
-            shouldHook = options.reporter && options.reporterOutput;
+            shouldHook = options.reporter && options.reporterOutput,
+            content = "";
 
         if ( shouldHook ) {
             hooker.hook( process.stdout, "write", {
                 pre: function( out ) {
-                    grunt.file.write( options.reporterOutput, out );
+                    content += out;
 
                     return hooker.preempt();
                 }
@@ -228,6 +229,7 @@ exports.init = function( grunt ) {
         this._result = this._reporter( this._errors );
 
         if ( shouldHook ) {
+            grunt.file.write( options.reporterOutput, content );
             hooker.unhook( process.stdout, "write" );
         }
 
