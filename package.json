@@ -19,7 +19,7 @@
         "url": "https://github.com/gustavohenke/grunt-jscs-checker/issues"
     },
     "dependencies": {
-        "jscs": "1.1.0",
+        "jscs": "1.2.0",
         "vow": "0.3.12",
         "hooker": "0.2.3",
 
