@@ -25,7 +25,7 @@ module.exports = function( grunt ) {
             options: {
                 jshintrc: ".jshintrc"
             },
-            all: [ "Gruntfile.js", "tasks/**/*.js", "test/*.js" ]
+            all: [ "Gruntfile.js", "tasks/**/*.js", "test/*.js", "test/enmasse/Gruntfile.js" ]
         },
         jscs: {
             src: "<%= jshint.all %>",
