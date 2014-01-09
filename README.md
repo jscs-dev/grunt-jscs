@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs-checker.png?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs-checker)
 [![Dependency Status](https://gemnasium.com/gustavohenke/grunt-jscs-checker.png)](https://gemnasium.com/gustavohenke/grunt-jscs-checker)
 [![NPM version](https://badge.fury.io/js/grunt-jscs-checker.png)](http://badge.fury.io/js/grunt-jscs-checker)
-[![Stories in Ready](https://badge.waffle.io/gustavohenke/grunt-jscs-checker.png?label=ready)](http://waffle.io/gustavohenke/grunt-jscs-checker)
 
 ## Getting started
 This plugin requires Grunt `~0.4.2`
