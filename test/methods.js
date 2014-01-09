@@ -219,7 +219,7 @@ module.exports = {
     report: function( test ) {
         hooker.hook( grunt.log, "writeln", {
             pre: function( message ) {
-                test.ok( message, "Reporter report something" );
+                test.ok( message, "Reporter should report something" );
                 test.done();
 
                 return hooker.preempt();
@@ -239,10 +239,10 @@ module.exports = {
 
         jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
 
-            // "grunt-contrib-nodeunit" package through which these are run, mutes grunt log actions
-            // so it wouldn't interfeare with tests output, for our case this is not ideal
-            // since our default reporter uses grunt.log functions
-            // these value will be changed when next test is run,
+            // "grunt-contrib-nodeunit" package through which these tests are run,
+            // mutes grunt log actions so it wouldn't interfeare with tests output,
+            // for our case this is not ideal since our default reporter uses grunt.log functions
+            // this value will be changed when next test is run,
             // so there is no need to do this globally
             grunt.log.muted = false;
 
