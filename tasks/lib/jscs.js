@@ -1,7 +1,6 @@
-"use stirct";
+"use strict";
 
 var path = require( "path" ),
-    utils = require( "util" ),
 
     Checker = require( "jscs/lib/checker" ),
 
@@ -69,7 +68,7 @@ exports.init = function( grunt ) {
         });
 
         return checkPath;
-    }
+    };
 
     /**
      * Get config
@@ -95,7 +94,7 @@ exports.init = function( grunt ) {
         }
 
         return config;
-    }
+    };
 
     /**
      * Read config file
@@ -113,27 +112,28 @@ exports.init = function( grunt ) {
         }
 
         return {};
-    }
+    };
 
     /**
      * Get inline options
      * @return {Object}
      */
     JSCS.prototype.getOptions = function() {
-        var _options = {};
+        var option,
+            _options = {};
 
         // Copy options to another object so this method would not be destructive
-        for ( var option in this.options ) {
+        for ( option in this.options ) {
 
             // If to jscs would be given a grunt task option
             // that not defined in jscs it would throw
             if ( !~taskOptions.indexOf( option ) ) {
-                _options[ option ] = this.options[ option ]
+                _options[ option ] = this.options[ option ];
             }
         }
 
         return _options;
-    }
+    };
 
     /**
      * Register reporter
@@ -160,7 +160,7 @@ exports.init = function( grunt ) {
         }
 
         grunt.fatal( "Reporter \"" + name + "\" does not exist" );
-    },
+    };
 
     /**
      * Return reporter
@@ -168,7 +168,7 @@ exports.init = function( grunt ) {
      */
     JSCS.prototype.getReporter = function() {
         return this._reporter;
-    }
+    };
 
     /**
      * Set errors collection as instance property
@@ -182,7 +182,7 @@ exports.init = function( grunt ) {
         });
 
         return this;
-    }
+    };
 
     /**
      * Return instance errors
@@ -190,7 +190,7 @@ exports.init = function( grunt ) {
      */
     JSCS.prototype.getErrors = function() {
         return this._errors;
-    }
+    };
 
     /**
      * Count and return errors
@@ -205,7 +205,7 @@ exports.init = function( grunt ) {
         });
 
         return result;
-    }
+    };
 
     /**
      * Send errors to the reporter
@@ -234,7 +234,7 @@ exports.init = function( grunt ) {
         }
 
         return this;
-    }
+    };
 
     /**
      * Print number of found errors
@@ -251,7 +251,7 @@ exports.init = function( grunt ) {
         }
 
         return this;
-    }
+    };
 
     return JSCS;
-}
+};
