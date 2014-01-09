@@ -231,6 +231,30 @@ module.exports = {
         fixture.report();
     },
 
+    "Default reporter should be outputable to the file (#23)": function( test ) {
+        var jscs = new JSCS({
+            reporterOutput: "#23",
+            "requireCurlyBraces": [ "while" ],
+        });
+
+        jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
+
+            // "grunt-contrib-nodeunit" package through which these are run, mutes grunt log actions
+            // so it wouldn't interfeare with tests output, for our case this is not ideal
+            // since our default reporter uses grunt.log functions
+            // these value will be changed when next test is run,
+            // so there is no need to do this globally
+            grunt.log.muted = false;
+
+            jscs.setErrors( errorsCollection ).report();
+            test.ok( grunt.file.read( "#23" ).length, "all output should be directed to the file" );
+
+            grunt.file.delete( "#23" );
+
+            test.done();
+        });
+    },
+
     notify: function( test ) {
         hooker.hook( grunt.log, "error", {
             pre: function( message ) {

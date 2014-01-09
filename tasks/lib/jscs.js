@@ -213,7 +213,7 @@ exports.init = function( grunt ) {
      */
     JSCS.prototype.report = function() {
         var options = this.options,
-            shouldHook = options.reporter && options.reporterOutput,
+            shouldHook = options.reporterOutput,
             content = "";
 
         if ( shouldHook ) {
