@@ -1,7 +1,7 @@
 {
     "name": "grunt-jscs-checker",
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "author": {
         "name": "Gustavo Henke",
         "email": "gustavo@injoin.com.br",
