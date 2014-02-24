@@ -30,7 +30,6 @@
     "peerDependencies": {
         "grunt": "~0.4.2"
     },
-    "main": "Gruntfile.js",
     "keywords": [
         "gruntplugin",
         "jscs",
