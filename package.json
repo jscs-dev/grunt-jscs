@@ -22,7 +22,6 @@
     },
     "devDependencies": {
         "grunt-bump": "~0.0.13",
-        "grunt-cli": "~0.1.13",
         "grunt-contrib-jshint": "~0.8.0",
         "grunt-contrib-nodeunit": "~0.3.2",
         "load-grunt-tasks": "~0.3.0"
