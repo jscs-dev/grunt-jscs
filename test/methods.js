@@ -42,14 +42,14 @@ module.exports = {
         }
 
         jscs = new JSCS({
-            requireCurlyBraces: [ "if" ],
+            requireCurlyBraces: [ "if" ]
         }).getConfig();
 
         test.ok( Array.isArray( jscs.requireCurlyBraces ),
                 "\"requireCurlyBraces\" option should have been preserved" );
 
         jscs = new JSCS({
-            requireCurlyBraces: [ "if" ],
+            requireCurlyBraces: [ "if" ]
         }).getConfig();
 
         test.ok( !jscs.config, "config option should have been removed" );
@@ -173,7 +173,7 @@ module.exports = {
 
     registerReporter: function( test ) {
         var jscs = new JSCS({
-            requireCurlyBraces: [],
+            requireCurlyBraces: []
         });
 
         test.equal( typeof jscs.getReporter(), "function", "should register default reporter" );
@@ -234,7 +234,7 @@ module.exports = {
     "Default reporter should be outputable to the file (#23)": function( test ) {
         var jscs = new JSCS({
             reporterOutput: "#23",
-            "requireCurlyBraces": [ "while" ],
+            "requireCurlyBraces": [ "while" ]
         });
 
         jscs.check( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
@@ -332,7 +332,7 @@ module.exports = {
         });
 
         var jscs = new JSCS({
-            "requireCurlyBraces": [ "while" ],
+            "requireCurlyBraces": [ "while" ]
         });
 
         jscs.check( "test/fixtures/broken.js" );
