@@ -15,17 +15,17 @@
         "url": "https://github.com/gustavohenke/grunt-jscs-checker/issues"
     },
     "dependencies": {
-        "hooker": "0.2.3",
-        "jscs": "~1.2.0",
-        "lodash.assign": "2.4.1",
-        "vow": "0.4.0"
+        "hooker": "~0.2.3",
+        "jscs": "~1.2.4",
+        "lodash.assign": "~2.4.1",
+        "vow": "~0.4.1"
     },
     "devDependencies": {
-        "grunt-bump": "0.0.11",
-        "grunt-cli": "0.1.11",
-        "grunt-contrib-jshint": "0.7.2",
-        "grunt-contrib-nodeunit": "0.2.2",
-        "load-grunt-tasks": "0.2.0"
+        "grunt-bump": "~0.0.13",
+        "grunt-cli": "~0.1.13",
+        "grunt-contrib-jshint": "~0.8.0",
+        "grunt-contrib-nodeunit": "~0.3.2",
+        "load-grunt-tasks": "~0.3.0"
     },
     "peerDependencies": {
         "grunt": "~0.4.2"
