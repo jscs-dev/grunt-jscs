@@ -1,9 +1,0 @@
-[4mRunning "jscs:force" (jscs) task[24m
-[1mWhile statement without curly braces[22m at [32m../fixtures/fixture.js[39m :
- [90m    1 |[39mwhile (false);
-[90m--------^[39m
- [90m    2 |[39m
-[31m>> [39m1 code style errors found!
-[33mWarning: Task "jscs:force" failed. [4mUsed --force, continuing.[24m[39m
-
-[31mDone, but with warnings.[39m
