@@ -11,14 +11,10 @@ module.exports = function( grunt ) {
         var done = this.async(),
             options = this.options(),
 
-            // either if it was configured with that option or passed through cli command
-            force = grunt.option( "force" ) || options.force,
             jscs = new JSCS( options ),
             checks = this.filesSrc.map(function( path ) {
                 return jscs.check( path );
             });
-
-        grunt.option( "force", force );
 
         Vow.allResolved( checks ).spread(function() {
 
@@ -33,7 +29,7 @@ module.exports = function( grunt ) {
 
             jscs.setErrors( results ).report().notify();
 
-            done( !jscs.count() );
+            done( options.force || !jscs.count() );
         });
     });
 };

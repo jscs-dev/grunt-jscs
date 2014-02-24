@@ -51,4 +51,7 @@ module.exports = function( grunt ) {
 
     grunt.loadTasks( "../../tasks" );
     grunt.registerTask( "default", "jscs" );
+    grunt.registerTask( "fatal", function() {
+        grunt.fatal("test");
+    });
 };
