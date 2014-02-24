@@ -17,13 +17,13 @@ exports.init = function( grunt ) {
      * @private
      */
     function isEmptyObject( obj ) {
-      var name;
+        var name;
 
-      for ( name in obj ) {
-        return false;
-      }
+        for ( name in obj ) {
+            return false;
+        }
 
-      return true;
+        return true;
     }
 
     /**
@@ -100,7 +100,7 @@ exports.init = function( grunt ) {
      * Read config file
      * @return {Object}
      */
-     JSCS.prototype.findConfig = function() {
+    JSCS.prototype.findConfig = function() {
         var configPath = this.options && this.options.config || ".jscs.json";
 
         if ( !grunt.file.isPathAbsolute( configPath ) ) {

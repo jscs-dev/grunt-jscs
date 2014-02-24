@@ -284,7 +284,7 @@ module.exports = {
     },
 
     additional: function( test ) {
-         var jscs = new JSCS({
+        var jscs = new JSCS({
             "additionalRules": [ "test/rules/*.js" ],
             "testAdditionalRules": true,
             config: "empty"
