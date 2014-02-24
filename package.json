@@ -42,5 +42,9 @@
     },
     "scripts": {
         "test": "grunt"
-    }
+    },
+    "files": [
+        "tasks",
+        "README.md"
+    ]
 }
