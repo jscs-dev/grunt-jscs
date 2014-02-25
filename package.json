@@ -3,6 +3,7 @@
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
     "version": "0.3.2",
     "author": "Gustavo Henke <gustavo@injoin.com.br> (https://github.com/gustavohenke)",
+    "license": "MIT",
     "homepage": "https://github.com/gustavohenke/grunt-jscs-checker",
     "contributors": [
         "Oleg <markelog@gmail.com>"
@@ -43,6 +44,7 @@
         "test": "grunt test"
     },
     "files": [
-        "tasks"
+        "tasks",
+        "LICENSE-MIT"
     ]
 }
