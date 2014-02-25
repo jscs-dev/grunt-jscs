@@ -3,6 +3,7 @@
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
     "version": "0.3.2",
     "author": "Gustavo Henke <gustavo@injoin.com.br> (https://github.com/gustavohenke)",
+    "license": "MIT",
     "homepage": "https://github.com/gustavohenke/grunt-jscs-checker",
     "contributors": [
         "Oleg <markelog@gmail.com>"
@@ -25,7 +26,8 @@
         "grunt-cli": "~0.1.13",
         "grunt-contrib-jshint": "~0.8.0",
         "grunt-contrib-nodeunit": "~0.3.2",
-        "load-grunt-tasks": "~0.3.0"
+        "load-grunt-tasks": "~0.3.0",
+        "time-grunt": "~0.2.9"
     },
     "peerDependencies": {
         "grunt": "~0.4.2"
@@ -40,10 +42,10 @@
         "node": ">=0.8.0"
     },
     "scripts": {
-        "test": "grunt"
+        "test": "grunt test"
     },
     "files": [
         "tasks",
-        "README.md"
+        "LICENSE-MIT"
     ]
 }
