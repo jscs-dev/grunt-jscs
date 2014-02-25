@@ -35,7 +35,7 @@ Default value: `.jscsrc`
 
 The path to the jscs configuration file.
 
-*If both jscs settings and config option are specified, then they will merge together –*
+*If both jscs settings and config option are specified, then they will merge together. *
 ```js
 jscs: {
     src: "path/to/files/*.js",
@@ -45,6 +45,8 @@ jscs: {
     }
 }
 ```
+
+__Warning:__ the default value will be changed to `null` when grunt-jscs-checker reaches v0.5.0.
 
 #### force
 Type: `Boolean`
