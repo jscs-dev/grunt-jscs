@@ -43,7 +43,6 @@
         "test": "grunt test"
     },
     "files": [
-        "tasks",
-        "README.md"
+        "tasks"
     ]
 }
