@@ -101,7 +101,7 @@ exports.init = function( grunt ) {
      * @return {Object}
      */
     JSCS.prototype.findConfig = function() {
-        var configPath = this.options && this.options.config || ".jscs.json";
+        var configPath = this.options && this.options.config || ".jscsrc";
 
         if ( !grunt.file.isPathAbsolute( configPath ) ) {
             configPath = path.join( process.cwd(), configPath );

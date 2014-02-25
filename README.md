@@ -31,7 +31,7 @@ Any specified option will be passed through directly to JSCS, plust this plugin 
 
 #### config
 Type: `String`
-Default value: `.jscs.json`
+Default value: `.jscsrc`
 
 The path to the jscs configuration file.
 
