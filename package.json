@@ -24,7 +24,8 @@
         "grunt-bump": "~0.0.13",
         "grunt-contrib-jshint": "~0.8.0",
         "grunt-contrib-nodeunit": "~0.3.2",
-        "load-grunt-tasks": "~0.3.0"
+        "load-grunt-tasks": "~0.3.0",
+        "time-grunt": "~0.2.9"
     },
     "peerDependencies": {
         "grunt": "~0.4.2"
