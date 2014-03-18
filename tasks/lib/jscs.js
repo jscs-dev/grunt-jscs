@@ -3,6 +3,7 @@
 var path = require( "path" ),
 
     Checker = require( "jscs/lib/checker" ),
+    jscsConfig = require( "jscs/lib/cli-config" ),
 
     assign = require( "lodash.assign" ),
     hooker = require( "hooker" );
@@ -103,12 +104,8 @@ exports.init = function( grunt ) {
     JSCS.prototype.findConfig = function() {
         var configPath = this.options && this.options.config || ".jscsrc";
 
-        if ( !grunt.file.isPathAbsolute( configPath ) ) {
-            configPath = path.join( process.cwd(), configPath );
-        }
-
         if ( grunt.file.exists( configPath ) ) {
-            return grunt.file.readJSON( configPath );
+            return jscsConfig.load( configPath, process.cwd() );
         }
 
         return {};

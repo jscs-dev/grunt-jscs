@@ -171,6 +171,33 @@ module.exports = {
         test.done();
     },
 
+    "findConfig - uses JSCS config loader": function( test ) {
+        var jscs,
+            cwd = process.cwd();
+
+        try {
+            grunt.file.setBase( "test/configs" );
+            jscs = new JSCS({
+                config: "package.json"
+            });
+        } catch ( error ) {
+            test.equal( error.toString(), "Error: Unsupported rules: example",
+                "should read config from package.json jscsConfig key" );
+        }
+
+        try {
+            grunt.file.setBase( cwd );
+            jscs = new JSCS({
+                config: "test/configs/.jscsrc"
+            });
+        } catch ( error ) {
+            test.equal( error.toString(), "Error: Unsupported rules: example",
+                "should read config with comments" );
+        }
+
+        test.done();
+    },
+
     registerReporter: function( test ) {
         var jscs = new JSCS({
             requireCurlyBraces: []
