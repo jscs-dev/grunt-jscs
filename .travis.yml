@@ -6,7 +6,7 @@ node_js:
 env:
   global:
     # NPM_KEY
-    - secure: aOHRXELamyzmgttmZszXZER7w4XNrXHvuE4bFB/s3jWs9pk/z4DG72y+33KQN8e+IOcqCgoVmIqV1CnARJCZHh4VkqW1qPTQpKLHDKGf4v1O2wJDM/+DUhVRig+OU2ehZj/xkvnUn05tZ1ptlYlof3Xhb5ads4sVX30INmIgpxw=
+    - secure: WAgJZ4vx/V2GiVq1WDqvVsaH59LHAAXlBKp495GpoqzqKpkzrfemc+M8rbWkr9X2iEPCmIgfrKFIT9PaWsq3sMdMigocaD/DKDQ44MwZod7xv2FNzEWfhkPUnMAEAmfJUcfAnI4w587BT9aM+HAkdEyq2b/bPIJH8/YiC3HkfXQ=
 
 # NPM Deploy
 deploy:
