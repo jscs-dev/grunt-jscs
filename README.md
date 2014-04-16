@@ -58,7 +58,7 @@ Set `force` to `true` to report JSCS errors but not fail the task.
 Type: `String`
 Default value: `null`
 
-Allows you to modify the output. By default it will use a built-in `grunt` reporter. Set the path to your own custom reporter or to one of the built-in JSCS [reporters](https://github.com/mdevils/node-jscs/tree/dc174f19531cf32e835979b84be6e15f5592aad6/lib/reporters).
+Allows you to modify the output. By default it will use a built-in `grunt` reporter. Set the path to your own custom reporter or to one of the built-in JSCS [reporters](https://github.com/mdevils/node-jscs/tree/master/lib/reporters).
 
 #### reporterOutput
 Type: `String`
