@@ -33,9 +33,9 @@ Any specified option will be passed through directly to JSCS, plust this plugin 
 Type: `String`
 Default value: `.jscsrc`
 
-The path to the jscs configuration file.
+The path to the jscs configuration file. The JSCS config loader will be used to find this file; for reference, [see here](https://github.com/mdevils/node-jscs#--config).  
+If both jscs settings and config option are specified, then they will merge together.
 
-*If both jscs settings and config option are specified, then they will merge together. *
 ```js
 jscs: {
     src: "path/to/files/*.js",
