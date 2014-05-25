@@ -88,3 +88,6 @@ jscs: {
     }
 }
 ```
+
+## Release History
+See the [releases page](https://github.com/gustavohenke/grunt-jscs-checker/releases).
