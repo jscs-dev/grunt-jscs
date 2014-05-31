@@ -27,7 +27,7 @@ _Run this task with the `grunt jscs` command._
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 ### Options
-Any specified option will be passed through directly to JSCS, plust this plugin has additional options:
+Any specified option will be passed through directly to JSCS, plus this plugin has additional options:
 
 #### config
 Type: `String`
