@@ -73,7 +73,7 @@ module.exports = {
 
         try {
             new JSCS({});
-        } catch( _ ) {}
+        } catch ( _ ) {}
     },
 
     "getConfig – error with incorrect config": function( test ) {
@@ -92,7 +92,7 @@ module.exports = {
             new JSCS({
                 config: "not-existed"
             });
-        } catch( _ ) {}
+        } catch ( _ ) {}
     },
 
     "getConfig – with empty config": function( test ) {
@@ -111,7 +111,7 @@ module.exports = {
             new JSCS({
                 config: "test/configs/empty.json"
             });
-        } catch( _ ) {}
+        } catch ( _ ) {}
     },
 
     "getConfig – with inline options": function( test ) {
