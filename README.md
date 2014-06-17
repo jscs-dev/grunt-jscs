@@ -31,7 +31,7 @@ Any specified option will be passed through directly to JSCS, plus this plugin h
 
 #### config
 Type: `String`
-Default value: `.jscsrc`
+Default value: `null`
 
 The path to the jscs configuration file. The JSCS config loader will be used to find this file; for reference, [see here](https://github.com/mdevils/node-jscs#--config).  
 If both jscs settings and config option are specified, then they will merge together.
@@ -45,8 +45,6 @@ jscs: {
     }
 }
 ```
-
-__Warning:__ the default value will be changed to `null` when grunt-jscs-checker reaches v0.5.0.
 
 #### force
 Type: `Boolean`
