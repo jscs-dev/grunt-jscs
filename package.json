@@ -2,11 +2,11 @@
     "name": "grunt-jscs-checker",
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
     "version": "0.4.4",
-    "author": "Gustavo Henke <gustavo@injoin.com.br> (https://github.com/gustavohenke)",
+    "author": "Gustavo Henke <gustavo@injoin.com.br>",
     "license": "MIT",
     "homepage": "https://github.com/gustavohenke/grunt-jscs-checker",
     "contributors": [
-        "Oleg <markelog@gmail.com>"
+        "Oleg Gaidarenko <markelog@gmail.com>"
     ],
     "repository": {
         "type": "git",
