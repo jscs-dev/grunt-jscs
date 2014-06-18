@@ -76,19 +76,25 @@ exports.init = function( grunt ) {
      * @return {Object}
      */
     JSCS.prototype.getConfig = function() {
-        var filePath = this.options.config,
+        var configOption = this.options.config,
             config = this.findConfig(),
             options = this.getOptions();
 
-        assign( config, options );
+        // If the config option is null, but we have inline options,
+        // we'll only use them as our config.
+        if ( configOption == null && !isEmptyObject( options ) ) {
+            config = options;
+        } else {
+            assign( config, options );
+        }
 
         if ( isEmptyObject( config ) ) {
-            if ( filePath && !grunt.file.exists( filePath ) ) {
-                grunt.fatal( "The config file \"" + filePath + "\" was not found" );
-
-            } else if ( filePath ) {
-                grunt.fatal( "\"" + filePath + "\" config is empty" );
-
+            if ( configOption && typeof configOption === "string" ) {
+                if ( !grunt.file.exists( configOption ) ) {
+                    grunt.fatal( "The config file \"" + configOption + "\" was not found" );
+                } else {
+                    grunt.fatal( "\"" + configOption + "\" config is empty" );
+                }
             } else {
                 grunt.fatal( "Nor config file nor inline options weren't found" );
             }
@@ -102,13 +108,16 @@ exports.init = function( grunt ) {
      * @return {Object}
      */
     JSCS.prototype.findConfig = function() {
-        var configPath = this.options && this.options.config;
+        var config = this.options && this.options.config;
 
-        if ( configPath && grunt.file.exists( configPath ) ) {
-            return jscsConfig.load( configPath, process.cwd() );
+        // If falsy value different than undefined was given, we'll return empty object
+        if ( !config && config != null ) {
+            return {};
         }
 
-        return {};
+        // true or null will use default jscs config loader
+        config = config === true ? null : config;
+        return jscsConfig.load( config, process.cwd() ) || {};
     };
 
     /**

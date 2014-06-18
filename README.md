@@ -30,11 +30,16 @@ Task targets, files and options may be specified according to the grunt [Configu
 Any specified option will be passed through directly to JSCS, plus this plugin has additional options:
 
 #### config
-Type: `String`
+Type: `String`, `Boolean`
 Default value: `null`
 
-The path to the jscs configuration file. The JSCS config loader will be used to find this file; for reference, [see here](https://github.com/mdevils/node-jscs#--config).  
-If both jscs settings and config option are specified, then they will merge together.
+Defines how to externally load a JSCS configuration via the [JSCS config loader](https://github.com/mdevils/node-jscs#--config).
+The following is the behavior of this option:
+
+- If set to `true` or to a file path and JSCS options are found in this task, then they will be merged;
+- If set to a file path, then this file will be used;
+- If set to `true`, JSCS will use its default config loading behavior;
+- If unspecified and no JSCS options found, then the previous rule applies as well.
 
 ```js
 jscs: {

@@ -6,7 +6,13 @@ var fixture, errors,
 
     path = require( "path" ),
 
-    hooker = require( "hooker" );
+    hooker = require( "hooker" ),
+
+    newJSCS = function() {
+        return new JSCS({
+            config: newJSCS.config
+        });
+    };
 
 module.exports = {
     setUp: function( done ) {
@@ -18,28 +24,27 @@ module.exports = {
             fixture.setErrors( errors = collection );
             done();
         });
+
+        // once option from hooker won't work with exceptions
+        hooker.hook( grunt, "fatal", {
+            pre: function( message ) {
+                throw new Error( message );
+            }
+        });
+    },
+    tearDown: function( done ) {
+        hooker.unhook( grunt, "fatal" );
+        done();
     },
 
     getConfig: function( test ) {
         var jscs;
 
-        try {
-            new JSCS({
-                config: "test/configs/example.json"
-            });
-        } catch ( error ) {
-            test.equal( error.toString(), "Error: Unsupported rules: example",
-                "should find config at local path" );
-        }
+        newJSCS.config = "test/configs/example.json";
+        test.throws( newJSCS, "Unsupported rules: example", "should find config at local path" );
 
-        try {
-            new JSCS({
-                config: path.resolve( process.cwd(), "test/configs/example.json" )
-            });
-        } catch ( error ) {
-            test.equal( error.toString(), "Error: Unsupported rules: example",
-                "should find config at absolute path" );
-        }
+        newJSCS.config = path.resolve( process.cwd(), "test/configs/example.json" );
+        test.throws( newJSCS, "Unsupported rules: example", "should find config at absolute path" );
 
         jscs = new JSCS({
             requireCurlyBraces: [ "if" ]
@@ -59,59 +64,22 @@ module.exports = {
         test.done();
     },
 
-    "getConfig – error with empty object": function( test ) {
-        hooker.hook( grunt, "fatal", {
-            pre: function( message ) {
-                test.equal( message, "Nor config file nor inline options weren't found" );
-
-                test.done();
-                return hooker.preempt();
-            },
-
-            once: true
-        });
-
-        try {
-            new JSCS({});
-        } catch ( _ ) {}
-    },
-
     "getConfig – error with incorrect config": function( test ) {
-        hooker.hook( grunt, "fatal", {
-            pre: function( message ) {
-                test.equal( message, "The config file \"not-existed\" was not found" );
+        newJSCS.config = "not-existed";
 
-                test.done();
-                return hooker.preempt();
-            },
+        test.throws( newJSCS, "The config file \"not-existed\" was not found",
+            "should report that the config was not found" );
 
-            once: true
-        });
-
-        try {
-            new JSCS({
-                config: "not-existed"
-            });
-        } catch ( _ ) {}
+        test.done();
     },
 
     "getConfig – with empty config": function( test ) {
-        hooker.hook( grunt, "fatal", {
-            pre: function( message ) {
-                test.equal( message, "\"test/configs/empty.json\" config is empty" );
+        newJSCS.config = "test/configs/empty.json";
 
-                test.done();
-                return hooker.preempt();
-            },
+        test.throws( newJSCS, "\"test/configs/empty.json\" config is empty",
+            "should report that the config is empty" );
 
-            once: true
-        });
-
-        try {
-            new JSCS({
-                config: "test/configs/empty.json"
-            });
-        } catch ( _ ) {}
+        test.done();
     },
 
     "getConfig – with inline options": function( test ) {
@@ -148,53 +116,42 @@ module.exports = {
     },
 
     findConfig: function( test ) {
-        var jscs;
+        newJSCS.config = "test/configs/example.json";
+        test.throws( newJSCS, "Unsupported rules: example",
+            "should find config at local path" );
 
-        try {
-            jscs = new JSCS({
-                config: "test/configs/example.json"
-            });
-        } catch ( error ) {
-            test.equal( error.toString(), "Error: Unsupported rules: example",
-                "should find config at local path" );
-        }
-
-        try {
-            jscs = new JSCS({
-                config: path.resolve( process.cwd(), "test/configs/example.json" )
-            });
-        } catch ( error ) {
-            test.equal( error.toString(), "Error: Unsupported rules: example",
-                "should find config at absolute path"  );
-        }
+        newJSCS.config = path.resolve( process.cwd(), "test/configs/example.json" );
+        test.throws( newJSCS, "Unsupported rules: example",
+            "should find config at absolute path"  );
 
         test.done();
     },
 
     "findConfig - uses JSCS config loader": function( test ) {
-        var jscs,
-            cwd = process.cwd();
+        var cwd = process.cwd();
 
-        try {
-            grunt.file.setBase( "test/configs" );
-            jscs = new JSCS({
-                config: "package.json"
-            });
-        } catch ( error ) {
-            test.equal( error.toString(), "Error: Unsupported rules: example",
-                "should read config from package.json jscsConfig key" );
-        }
+        grunt.file.setBase( "test/configs" );
+        newJSCS.config = null;
+        test.throws( newJSCS, "Unsupported rules: example",
+            "should read some config using JSCS loader" );
 
-        try {
-            grunt.file.setBase( cwd );
-            jscs = new JSCS({
-                config: "test/configs/.jscsrc"
-            });
-        } catch ( error ) {
-            test.equal( error.toString(), "Error: Unsupported rules: example",
-                "should read config with comments" );
-        }
+        newJSCS.config = "package.json";
+        test.throws( newJSCS, "Unsupported rules: example",
+            "should read config from package.json jscsConfig key" );
 
+        grunt.file.setBase( cwd );
+        newJSCS.config = "test/configs/.jscsrc";
+        test.throws( newJSCS, "Unsupported rules: example",
+            "should read config with comments" );
+
+        test.done();
+    },
+
+    "findConfig - does no config loading if config is falsy": function( test ) {
+        newJSCS.config = false;
+
+        test.throws( newJSCS, "Nor config file nor inline options weren't found",
+            "should load no config" );
         test.done();
     },
 
