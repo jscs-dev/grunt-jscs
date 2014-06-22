@@ -159,7 +159,7 @@ exports.init = function( grunt ) {
     /**
      * Register reporter
      * @param {String} name - name or path to the reporter
-     * @return {Reporter}
+     * @return {Reporter|null}
      */
     JSCS.prototype.registerReporter = function( name ) {
         if ( !name ) {
@@ -181,6 +181,9 @@ exports.init = function( grunt ) {
         }
 
         grunt.fatal( "Reporter \"" + name + "\" does not exist" );
+
+        // This, is just for the consistency, since we throw in the line above
+        return null;
     };
 
     /**
