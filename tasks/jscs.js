@@ -10,6 +10,9 @@ module.exports = function( grunt ) {
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var done = this.async(),
             options = this.options({
+
+                // null is a default value, but its equivalent to `true`,
+                // with this way it's easy to distinguish specified value
                 config: null
             }),
 
