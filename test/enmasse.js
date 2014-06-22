@@ -58,3 +58,14 @@ exports.success = function( test ) {
         test.done();
     });
 };
+
+exports.onlyInline = function( test ) {
+    grunt.util.spawn({
+        cmd: "grunt",
+        args: [ "jscs:only-inline" ]
+    }, function( error, result ) {
+        test.equal( result.code, 0 );
+
+        test.done();
+    });
+};

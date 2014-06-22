@@ -45,6 +45,14 @@ module.exports = function( grunt ) {
                     "requireCurlyBraces": [ "while" ],
                     force: true
                 }
+            },
+            "only-inline": {
+                files: {
+                    src: "../fixtures/only-inline.js"
+                },
+                options: {
+                    "requireCurlyBraces": [ "while" ]
+                }
             }
         }
     });
