@@ -84,23 +84,38 @@ exports.init = function( grunt ) {
         // we'll only use them as our config.
         if ( configOption == null && !isEmptyObject( options ) ) {
             config = options;
+
         } else {
             assign( config, options );
         }
 
+        this.throwForConfig( config );
+
+        return config;
+    };
+
+    /**
+     * Throw if something wrong with config file or with inline options
+     * @param {Object} config
+    **/
+    JSCS.prototype.throwForConfig = function( config ) {
+        var configOption = this.options.config;
+
         if ( isEmptyObject( config ) ) {
             if ( configOption && typeof configOption === "string" ) {
-                if ( !grunt.file.exists( configOption ) ) {
-                    grunt.fatal( "The config file \"" + configOption + "\" was not found" );
-                } else {
+                if ( grunt.file.exists( configOption ) ) {
                     grunt.fatal( "\"" + configOption + "\" config is empty" );
+
+                } else {
+                    grunt.fatal( "The config file \"" + configOption + "\" was not found" );
                 }
+
             } else {
                 grunt.fatal( "Nor config file nor inline options weren't found" );
             }
         }
 
-        return config;
+        return this;
     };
 
     /**
