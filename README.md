@@ -31,21 +31,20 @@ Any specified option will be passed through directly to JSCS, plus this plugin h
 
 #### config
 Type: `String`, `Boolean`
-Default value: `null`
+Default value: `true`
 
 Defines how to externally load a JSCS configuration via the [JSCS config loader](https://github.com/mdevils/node-jscs#--config).
 The following is the behavior of this option:
 
-- If set to `true` or to a file path and JSCS options are found in this task, then they will be merged;
 - If set to a file path, then this file will be used;
 - If set to `true`, JSCS will use its default config loading behavior;
-- If unspecified and no JSCS options found, then the previous rule applies as well.
+- If set to `true` or to a file path with JSCS options specified in the grunt task, then they will be merged.
 
 ```js
 jscs: {
     src: "path/to/files/*.js",
     options: {
-        config: ".jscs.json",
+        config: ".jscsrc",
         requireCurlyBraces: [ "if" ]
     }
 }
@@ -75,7 +74,7 @@ jscs: {
     main: [ "path/to/files/*.js" ],
     secondary: {
         options: {
-            config: ".jscs-secondary.json",
+            config: ".jscs-secondary",
         },
         files: {
             src: [ "path/to/more/files/**/*.js", "my-plugin.js" ]

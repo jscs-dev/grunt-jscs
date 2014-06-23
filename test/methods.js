@@ -147,11 +147,11 @@ module.exports = {
         test.done();
     },
 
-    "findConfig - does no config loading if config is falsy": function( test ) {
+    "findConfig - throws if config option is falsy": function( test ) {
         newJSCS.config = false;
 
         test.throws( newJSCS, "Nor config file nor inline options weren't found",
-            "should load no config" );
+            "should throw" );
         test.done();
     },
 
