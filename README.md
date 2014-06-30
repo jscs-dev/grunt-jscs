@@ -1,7 +1,7 @@
 # grunt-jscs
 > Task for checking JavaScript Code Style with [jscs](https://github.com/mdevils/node-jscs).
 
-[![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs-checker.png?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs-checker)
+[![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs.png?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs)
 [![Dependency Status](https://david-dm.org/gustavohenke/grunt-jscs.png?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs)
 [![devDependency Status](https://david-dm.org/gustavohenke/grunt-jscs/dev-status.png?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/grunt-jscs.png)](http://badge.fury.io/js/grunt-jscs)
