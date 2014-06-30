@@ -1,10 +1,10 @@
-# grunt-jscs-checker
+# grunt-jscs
 > Task for checking JavaScript Code Style with [jscs](https://github.com/mdevils/node-jscs).
 
 [![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs-checker.png?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs-checker)
-[![Dependency Status](https://david-dm.org/gustavohenke/grunt-jscs-checker.png?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs-checker)
-[![devDependency Status](https://david-dm.org/gustavohenke/grunt-jscs-checker/dev-status.png?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs-checker#info=devDependencies)
-[![NPM version](https://badge.fury.io/js/grunt-jscs-checker.png)](http://badge.fury.io/js/grunt-jscs-checker)
+[![Dependency Status](https://david-dm.org/gustavohenke/grunt-jscs.png?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs)
+[![devDependency Status](https://david-dm.org/gustavohenke/grunt-jscs/dev-status.png?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs#info=devDependencies)
+[![NPM version](https://badge.fury.io/js/grunt-jscs.png)](http://badge.fury.io/js/grunt-jscs)
 
 ## Getting started
 This plugin requires Grunt `~0.4.2`
@@ -12,13 +12,13 @@ This plugin requires Grunt `~0.4.2`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-jscs-checker --save-dev
+npm install grunt-jscs --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks("grunt-jscs-checker");
+grunt.loadNpmTasks("grunt-jscs");
 ```
 
 ## jscs task
@@ -92,4 +92,4 @@ jscs: {
 ```
 
 ## Release History
-See the [releases page](https://github.com/gustavohenke/grunt-jscs-checker/releases).
+See the [releases page](https://github.com/gustavohenke/grunt-jscs/releases).
