@@ -2,8 +2,8 @@
 > Task for checking JavaScript Code Style with [jscs](https://github.com/mdevils/node-jscs).
 
 [![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs.svg?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs)
-[![Dependency Status](https://david-dm.org/gustavohenke/grunt-jscs.svg?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs)
-[![devDependency Status](https://david-dm.org/gustavohenke/grunt-jscs/dev-status.svg?theme=shields.io)](https://david-dm.org/gustavohenke/grunt-jscs#info=devDependencies)
+[![Dependency Status](https://david-dm.org/gustavohenke/grunt-jscs.svg)](https://david-dm.org/gustavohenke/grunt-jscs)
+[![devDependency Status](https://david-dm.org/gustavohenke/grunt-jscs/dev-status.svg)](https://david-dm.org/gustavohenke/grunt-jscs#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/grunt-jscs.svg)](http://badge.fury.io/js/grunt-jscs)
 
 ## Getting started
