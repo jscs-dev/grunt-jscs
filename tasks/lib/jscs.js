@@ -5,7 +5,7 @@ var path = require( "path" ),
     Checker = require( "jscs/lib/checker" ),
     jscsConfig = require( "jscs/lib/cli-config" ),
 
-    assign = require( "lodash.assign" ),
+    assign = require( "lodash" ).assign,
     hooker = require( "hooker" );
 
 exports.init = function( grunt ) {
