@@ -312,7 +312,7 @@ module.exports = {
 
         jscs.check( "test/fixtures/broken.js" ).then(function( errorsCollection ) {
             jscs.setErrors( errorsCollection ).report();
-            
+
             test.ok( grunt.file.exists( "test.txt" ), "test.txt should exist" );
             test.ok( ~grunt.file.read( "test.txt" ).indexOf( "Unexpected end of input" ),
                 "test.txt should contain the syntax error message" );
