@@ -20,7 +20,7 @@ exports.broken = function( test ) {
         cmd: "grunt",
         args: [ "jscs:broken" ]
     }, function( error, result ) {
-        test.equal( result.code, 6 );
+        test.equal( result.code, 3 );
 
         test.done();
     });
