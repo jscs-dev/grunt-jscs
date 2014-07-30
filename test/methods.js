@@ -305,20 +305,19 @@ module.exports = {
 
     "Don't break on syntax error": function( test ) {
         var jscs = new JSCS({
-            "requireCurlyBraces": [ "while" ],
-            reporter: "inline",
-            reporterOutput: "test.txt"
+            "requireCurlyBraces": [ "while" ]
         });
 
         jscs.check( "test/fixtures/broken.js" ).then(function( errorsCollection ) {
-            jscs.setErrors( errorsCollection ).report();
+            errorsCollection.forEach(function( errors ) {
+                test.equal(
+                    errors.getErrorList()[ 0 ].message,
+                    "Unexpected end of input",
+                    "should return correct syntax error"
+                );
 
-            test.ok( grunt.file.exists( "test.txt" ), "test.txt should exist" );
-            test.ok( ~grunt.file.read( "test.txt" ).indexOf( "Unexpected end of input" ),
-                "test.txt should contain the syntax error message" );
-            grunt.file.delete( "test.txt" );
-
-            test.done();
+                test.done();
+            });
         }).fail( test.done );
     }
 };
