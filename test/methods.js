@@ -304,21 +304,21 @@ module.exports = {
     },
 
     "Don't break on syntax error": function( test ) {
-        hooker.hook( grunt, "warn", {
-            pre: function( message ) {
-                test.ok( message.toString().length, "error message should not be empty" );
-
-                test.done();
-                return hooker.preempt();
-            },
-
-            once: true
-        });
-
         var jscs = new JSCS({
-            "requireCurlyBraces": [ "while" ]
+            "requireCurlyBraces": [ "while" ],
+            reporter: "inline",
+            reporterOutput: "test.txt"
         });
 
-        jscs.check( "test/fixtures/broken.js" );
+        jscs.check( "test/fixtures/broken.js" ).then(function( errorsCollection ) {
+            jscs.setErrors( errorsCollection ).report();
+            
+            test.ok( grunt.file.exists( "test.txt" ), "test.txt should exist" );
+            test.ok( ~grunt.file.read( "test.txt" ).indexOf( "Unexpected end of input" ),
+                "test.txt should contain the syntax error message" );
+            grunt.file.delete( "test.txt" );
+
+            test.done();
+        }).fail( test.done );
     }
 };
