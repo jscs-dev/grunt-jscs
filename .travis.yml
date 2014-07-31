@@ -13,4 +13,5 @@ deploy:
   email: "gustavo@injoin.com.br"
   api_key: "${NPM_KEY}"
   on:
+    all_branches: true
     tags: true
