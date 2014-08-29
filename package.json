@@ -1,7 +1,7 @@
 {
     "name": "grunt-jscs",
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
-    "version": "0.6.2",
+    "version": "0.7.0",
     "author": "Gustavo Henke <gustavo@injoin.com.br>",
     "license": "MIT",
     "homepage": "https://github.com/gustavohenke/grunt-jscs",
