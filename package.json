@@ -4,16 +4,16 @@
     "version": "0.7.0",
     "author": "Gustavo Henke <gustavo@injoin.com.br>",
     "license": "MIT",
-    "homepage": "https://github.com/gustavohenke/grunt-jscs",
+    "homepage": "https://github.com/jscs-dev/grunt-jscs",
     "contributors": [
         "Oleg Gaidarenko <markelog@gmail.com>"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/gustavohenke/grunt-jscs.git"
+        "url": "https://github.com/jscs-dev/grunt-jscs.git"
     },
     "bugs": {
-        "url": "https://github.com/gustavohenke/grunt-jscs/issues"
+        "url": "https://github.com/jscs-dev/grunt-jscs/issues"
     },
     "dependencies": {
         "hooker": "~0.2.3",

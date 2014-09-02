@@ -1,9 +1,9 @@
 # grunt-jscs
-> Task for checking JavaScript Code Style with [jscs](https://github.com/mdevils/node-jscs).
+> Task for checking JavaScript Code Style with [jscs](https://github.com/jscs-dev/node-jscs).
 
-[![Build Status](https://travis-ci.org/gustavohenke/grunt-jscs.svg?branch=master)](https://travis-ci.org/gustavohenke/grunt-jscs)
-[![Dependency Status](https://david-dm.org/gustavohenke/grunt-jscs.svg)](https://david-dm.org/gustavohenke/grunt-jscs)
-[![devDependency Status](https://david-dm.org/gustavohenke/grunt-jscs/dev-status.svg)](https://david-dm.org/gustavohenke/grunt-jscs#info=devDependencies)
+[![Build Status](https://travis-ci.org/jscs-dev/grunt-jscs.svg?branch=master)](https://travis-ci.org/jscs-dev/grunt-jscs)
+[![Dependency Status](https://david-dm.org/jscs-dev/grunt-jscs.svg)](https://david-dm.org/jscs-dev/grunt-jscs)
+[![devDependency Status](https://david-dm.org/jscs-dev/grunt-jscs/dev-status.svg)](https://david-dm.org/jscs-dev/grunt-jscs#info=devDependencies)
 [![NPM version](https://badge.fury.io/js/grunt-jscs.svg)](http://badge.fury.io/js/grunt-jscs)
 
 ## Getting started
@@ -33,7 +33,7 @@ Any specified option will be passed through directly to JSCS, plus this plugin h
 Type: `String`, `Boolean`
 Default value: `true`
 
-Defines how to externally load a JSCS configuration via the [JSCS config loader](https://github.com/mdevils/node-jscs#--config).
+Defines how to externally load a JSCS configuration via the [JSCS config loader](https://github.com/jscs-dev/node-jscs#--config).
 The following is the behavior of this option:
 
 - If set to a file path, then this file will be used;
@@ -60,7 +60,7 @@ Set `force` to `true` to report JSCS errors but not fail the task.
 Type: `String`
 Default value: `null`
 
-Allows you to modify the output. By default it will use a built-in `grunt` reporter. Set the path to your own custom reporter or to one of the built-in JSCS [reporters](https://github.com/mdevils/node-jscs/tree/master/lib/reporters).
+Allows you to modify the output. By default it will use a built-in `grunt` reporter. Set the path to your own custom reporter or to one of the built-in JSCS [reporters](https://github.com/jscs-dev/node-jscs/tree/master/lib/reporters).
 
 #### reporterOutput
 Type: `String`
@@ -92,4 +92,4 @@ jscs: {
 ```
 
 ## Release History
-See the [releases page](https://github.com/gustavohenke/grunt-jscs/releases).
+See the [releases page](https://github.com/jscs-dev/grunt-jscs/releases).
