@@ -88,13 +88,15 @@ module.exports = {
             config: "config",
             force: true,
             reporterOutput: "reporterOutput",
-            reporter: ""
+            reporter: "",
+            esnext: true
         }).getConfig();
 
         test.ok( !config.config, "config option should be removed" );
         test.ok( !config.force, "force option should be removed" );
         test.ok( !config.reporterOuput, "reporterOuput option should be removed" );
         test.ok( !config.reporter, "reporter option should be removed" );
+        test.ok( !config.esnext, "reporter option should be removed" );
         test.ok( !!config.requireCurlyBraces, "requireCurlyBraces should stay" );
 
         test.done();

@@ -11,7 +11,7 @@ var path = require( "path" ),
 exports.init = function( grunt ) {
 
     // Task specific options
-    var taskOptions = [ "config", "force", "reporter", "reporterOutput" ];
+    var taskOptions = [ "config", "force", "reporter", "reporterOutput", "esnext" ];
 
     /**
      * @see jQuery.isEmptyObject
@@ -49,7 +49,7 @@ exports.init = function( grunt ) {
      * @return {JSCS}
      */
     function JSCS( options ) {
-        this.checker = new Checker();
+        this.checker = new Checker(options);
         this.options = options;
 
         this.checker.registerDefaultRules();
