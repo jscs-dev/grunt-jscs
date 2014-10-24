@@ -26,7 +26,7 @@
         "grunt-cli": "~0.1.13",
         "grunt-contrib-jshint": "~0.10.0",
         "grunt-contrib-nodeunit": "~0.4.0",
-        "load-grunt-tasks": "~0.6.0",
+        "load-grunt-tasks": "~1.0.0",
         "time-grunt": "~1.0.0"
     },
     "peerDependencies": {
