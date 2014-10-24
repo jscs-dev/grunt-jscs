@@ -11,7 +11,7 @@ var path = require( "path" ),
 exports.init = function( grunt ) {
 
     // Task specific options
-    var taskOptions = [ "config", "force", "reporter", "reporterOutput", "esnext", "maxErrors" ];
+    var taskOptions = [ "config", "force", "reporter", "reporterOutput" ];
 
     /**
      * @see jQuery.isEmptyObject
