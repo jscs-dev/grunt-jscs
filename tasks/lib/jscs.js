@@ -111,7 +111,7 @@ exports.init = function( grunt ) {
                 }
 
             } else {
-                grunt.fatal( "Nor config file nor inline options weren't found" );
+                grunt.fatal( "Neither config file nor grunt options were defined" );
             }
         }
 
