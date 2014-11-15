@@ -22,14 +22,15 @@ module.exports = function( grunt ) {
             });
 
         Vow.allResolved( checks ).spread(function() {
+            var results = [];
 
             // Filter unsuccessful promises
-            var results = filter.call( arguments, function( promise ) {
+            filter.call( arguments, function( promise ) {
                 return promise.isFulfilled();
 
             // Make array of errors
-            }).map(function( promise ) {
-                return promise.valueOf()[ 0 ];
+            }).forEach(function( promise ) {
+                results.push.apply( results, promise.valueOf() );
             });
 
             jscs.setErrors( results ).report().notify();

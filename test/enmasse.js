@@ -82,3 +82,17 @@ exports.merge = function( test ) {
         test.done();
     });
 };
+
+exports.dot = function( test ) {
+    grunt.util.spawn({
+        cmd: "grunt",
+        args: [ "jscs:dot" ]
+    }, function( error, result ) {
+        test.equal( result.code, 3 );
+
+        // Should get two errors
+        test.equal( result.stdout.split( "Illegal keyword: with" ).length, 3 );
+
+        test.done();
+    });
+};

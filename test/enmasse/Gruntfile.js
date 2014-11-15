@@ -61,6 +61,17 @@ module.exports = function( grunt ) {
                     config: true,
                     "requireCurlyBraces": [ "while" ]
                 }
+            },
+
+            dot: {
+                files: {
+                    src: ".",
+                    cwd: "../fixtures/dot"
+                },
+
+                options: {
+                    "disallowKeywords": [ "with" ]
+                }
             }
         }
     });
