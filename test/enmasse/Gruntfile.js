@@ -53,7 +53,7 @@ module.exports = function( grunt ) {
                     "requireCurlyBraces": [ "while" ]
                 }
             },
-            "merge": {
+            merge: {
                 files: {
                     src: "../fixtures/merge.js"
                 },
