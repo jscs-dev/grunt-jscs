@@ -28,9 +28,10 @@ module.exports = function( grunt ) {
                 return promise.isFulfilled();
 
             // Make array of errors
-            }).map(function( promise ) {
-                return promise.valueOf()[ 0 ];
-            });
+            }).reduce(function( memo, promise ) {
+                memo.push.apply(memo, promise.valueOf());
+                return memo
+            }, []);
 
             jscs.setErrors( results ).report().notify();
 
