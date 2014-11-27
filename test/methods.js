@@ -14,6 +14,12 @@ var fixture, errors,
         });
     };
 
+function getFirstUnsupportedRule( config ) {
+    newJSCS.config = config;
+
+    return newJSCS().checker.getConfiguration().getUnsupportedRuleNames()[ 0 ];
+}
+
 module.exports = {
     setUp: function( done ) {
         fixture = new JSCS({
@@ -38,13 +44,15 @@ module.exports = {
     },
 
     getConfig: function( test ) {
-        var jscs;
+        var jscs, example;
 
-        newJSCS.config = "test/configs/example.json";
-        test.throws( newJSCS, "Unsupported rules: example", "should find config at local path" );
+        example = getFirstUnsupportedRule( "test/configs/example.json" );
+        test.equal( example, "example", "should find config at local path" );
 
-        newJSCS.config = path.resolve( process.cwd(), "test/configs/example.json" );
-        test.throws( newJSCS, "Unsupported rules: example", "should find config at absolute path" );
+        example = getFirstUnsupportedRule(
+            path.resolve( process.cwd(), "test/configs/example.json" )
+        );
+        test.equal( example, "example", "should find config at absolute path" );
 
         jscs = new JSCS({
             requireCurlyBraces: [ "if" ]
@@ -116,33 +124,34 @@ module.exports = {
     },
 
     findConfig: function( test ) {
-        newJSCS.config = "test/configs/example.json";
-        test.throws( newJSCS, "Unsupported rules: example",
-            "should find config at local path" );
+        var example = getFirstUnsupportedRule( "test/configs/example.json" );
+        test.equal( example, "example", "should find config at local path" );
 
-        newJSCS.config = path.resolve( process.cwd(), "test/configs/example.json" );
-        test.throws( newJSCS, "Unsupported rules: example",
-            "should find config at absolute path"  );
+        example = getFirstUnsupportedRule(
+            path.resolve( process.cwd(), "test/configs/example.json" )
+        );
+        test.equal( example, "example", "should find config at absolute path" );
 
         test.done();
     },
 
     "findConfig - uses JSCS config loader": function( test ) {
-        var cwd = process.cwd();
+        var example,
+            cwd = process.cwd();
 
         grunt.file.setBase( "test/configs" );
-        newJSCS.config = null;
-        test.throws( newJSCS, "Unsupported rules: example",
-            "should read some config using JSCS loader" );
+        example = getFirstUnsupportedRule( null );
+        test.equal( example, "example", "should read some config using JSCS loader" );
 
-        newJSCS.config = "package.json";
-        test.throws( newJSCS, "Unsupported rules: example",
-            "should read config from package.json jscsConfig key" );
+        example = getFirstUnsupportedRule( null );
+        test.equal( example, "example", "should read some config using JSCS loader" );
+
+        example = getFirstUnsupportedRule( "package.json" );
+        test.equal( example, "example", "should read config from package.json jscsConfig key" );
 
         grunt.file.setBase( cwd );
-        newJSCS.config = "test/configs/.jscsrc";
-        test.throws( newJSCS, "Unsupported rules: example",
-            "should read config with comments" );
+        example = getFirstUnsupportedRule( "test/configs/.jscsrc" );
+        test.equal( example, "example", "should read config with comments" );
 
         test.done();
     },
