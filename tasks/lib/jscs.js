@@ -2,7 +2,7 @@
 
 var path = require( "path" ),
 
-    Checker = require( "jscs/lib/checker" ),
+    Checker = require( "jscs" ),
     jscsConfig = require( "jscs/lib/cli-config" ),
 
     assign = require( "lodash" ).assign,
