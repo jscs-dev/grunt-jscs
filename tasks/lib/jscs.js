@@ -1,8 +1,6 @@
 "use strict";
 
-var path = require( "path" ),
-
-    Checker = require( "jscs" ),
+var Checker = require( "jscs" ),
     jscsConfig = require( "jscs/lib/cli-config" ),
 
     assign = require( "lodash" ).assign,
@@ -51,11 +49,12 @@ exports.init = function( grunt ) {
     function JSCS( options ) {
         this.checker = new Checker();
         this.options = options;
+        this._reporter = null;
 
         this.checker.registerDefaultRules();
         this.checker.configure( this.getConfig() );
 
-        this._reporter = this.registerReporter( options.reporter );
+        this.registerReporter( options.reporter );
     }
 
     /**
@@ -163,27 +162,20 @@ exports.init = function( grunt ) {
      */
     JSCS.prototype.registerReporter = function( name ) {
         if ( !name ) {
-            return defaultReporter;
+            this._reporter = defaultReporter;
+
+            return this;
         }
 
-        var module;
+        var reporter = jscsConfig.getReporter( name );
 
-        try {
-            module = require( "jscs/lib/reporters/" + name );
-        } catch ( _ ) {
-            try {
-                module = require( path.resolve( process.cwd(), name ) );
-            } catch ( _ ) {}
+        if ( reporter.writer ) {
+            this._reporter = reporter.writer;
+
+            return this;
         }
 
-        if ( module ) {
-            return module;
-        }
-
-        grunt.fatal( "Reporter \"" + name + "\" does not exist" );
-
-        // This, is just for the consistency, since we throw in the line above
-        return null;
+        grunt.fatal( "Reporter \"" + reporter.path + "\" does not exist" );
     };
 
     /**
