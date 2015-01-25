@@ -33,7 +33,7 @@ Any specified option will be passed through directly to JSCS, plus this plugin h
 Type: `String`, `Boolean`
 Default value: `true`
 
-Defines how to externally load a JSCS configuration via the [JSCS config loader](https://github.com/jscs-dev/node-jscs#--config).
+Defines how to externally load a JSCS configuration via the [JSCS config loader](http://jscs.info/overview.html#-config-).
 The following is the behavior of this option:
 
 - If set to a file path, then this file will be used;
