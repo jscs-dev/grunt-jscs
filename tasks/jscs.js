@@ -9,19 +9,19 @@ module.exports = function( grunt ) {
 
     grunt.registerMultiTask( "jscs", "JavaScript Code Style checker", function() {
         var done = this.async(),
-            options = this.options({
+            options = this.options( {
 
                 // null is a default value, but its equivalent to `true`,
                 // with this way it's easy to distinguish specified value
                 config: null
-            }),
+            } ),
 
             jscs = new JSCS( options ),
-            checks = this.filesSrc.map(function( path ) {
+            checks = this.filesSrc.map( function( path ) {
                 return jscs.check( path );
-            });
+            } );
 
-        Vow.allResolved( checks ).spread(function() {
+        Vow.allResolved( checks ).spread( function() {
             var results = [];
 
             // Filter unsuccessful promises
@@ -29,13 +29,13 @@ module.exports = function( grunt ) {
                 return promise.isFulfilled();
 
             // Make array of errors
-            }).forEach(function( promise ) {
+            } ).forEach( function( promise ) {
                 results.push.apply( results, promise.valueOf() );
-            });
+            } );
 
             jscs.setErrors( results ).report().notify();
 
             done( options.force || !jscs.count() );
-        });
-    });
+        } );
+    } );
 };

@@ -1,7 +1,7 @@
 module.exports = function( grunt ) {
     "use strict";
 
-    grunt.initConfig({
+    grunt.initConfig( {
         bump: {
             options: {
                 files: [ "package.json" ],
@@ -34,7 +34,7 @@ module.exports = function( grunt ) {
             methods: "test/methods.js",
             enmasse: "test/enmasse.js"
         }
-    });
+    } );
 
     // Load grunt tasks from NPM packages
     require( "load-grunt-tasks" )( grunt );
