@@ -91,5 +91,11 @@ jscs: {
 }
 ```
 
+#### fix
+Type: `Boolean`
+Default value: `false`
+
+Auto-fix code style violations when possible.
+
 ## Release History
 See the [releases page](https://github.com/jscs-dev/grunt-jscs/releases).
