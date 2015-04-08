@@ -72,6 +72,28 @@ module.exports = function( grunt ) {
                 options: {
                     "disallowKeywords": [ "with" ]
                 }
+            },
+
+            fix: {
+                files: {
+                    src: "../fixtures/fixable.js"
+                },
+
+                options: {
+                    fix: true,
+                    validateIndentation: 4
+                }
+            },
+
+            "fix-fail": {
+                files: {
+                    src: "../fixtures/fixable.js"
+                },
+
+                options: {
+                    fix: false,
+                    validateIndentation: 4
+                }
             }
         }
     } );

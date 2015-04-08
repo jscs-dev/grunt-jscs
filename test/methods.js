@@ -328,5 +328,20 @@ module.exports = {
                 test.done();
             } );
         } ).fail( test.done );
+    },
+
+    "#fix send it's path to the jscs checker": function( test ) {
+        var jscs = new JSCS( {} );
+
+        hooker.hook( jscs.checker, "fixPath", function( path ) {
+            test.equal( path, "path" );
+            test.done();
+
+            return hooker.override( {
+                fail: function() {}
+            } );
+        } );
+
+        jscs.fix( "path" );
     }
 };

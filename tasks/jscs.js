@@ -13,13 +13,13 @@ module.exports = function( grunt ) {
 
                 // null is a default value, but its equivalent to `true`,
                 // with this way it's easy to distinguish specified value
-                config: null
+                config: null,
+
+                fix: false
             } ),
 
             jscs = new JSCS( options ),
-            checks = this.filesSrc.map( function( path ) {
-                return jscs.check( path );
-            } );
+            checks = this.filesSrc.map( options.fix ? jscs.fix : jscs.check, jscs );
 
         Vow.allResolved( checks ).spread( function() {
             var results = [];
