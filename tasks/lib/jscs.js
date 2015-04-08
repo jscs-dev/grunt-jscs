@@ -167,7 +167,7 @@ exports.init = function( grunt ) {
             return this;
         }
 
-        var reporter = jscsConfig.getReporter( name );
+        var reporter = jscsConfig.getReporter( name.toString() );
 
         if ( reporter.writer ) {
             this._reporter = reporter.writer;
