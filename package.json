@@ -41,7 +41,9 @@
         "node": ">= 0.10.0"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt test",
+        "bump": "npm version patch -m \"Release v%s\"",
+        "bump-minor": "npm version minor -m \"Release v%s\""
     },
     "files": [
         "tasks",
