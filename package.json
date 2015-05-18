@@ -22,7 +22,6 @@
         "vow": "~0.4.1"
     },
     "devDependencies": {
-        "grunt-bump": "~0.0.13",
         "grunt-cli": "~0.1.13",
         "grunt-contrib-jshint": "~0.10.0",
         "grunt-contrib-nodeunit": "~0.4.0",
@@ -42,7 +41,9 @@
         "node": ">= 0.10.0"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt test",
+        "bump": "npm version patch -m \"Release v%s\"",
+        "bump-minor": "npm version minor -m \"Release v%s\""
     },
     "files": [
         "tasks",
