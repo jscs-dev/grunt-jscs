@@ -83,6 +83,19 @@ exports.merge = function( test ) {
     } );
 };
 
+exports.mergeWithPath = function( test ) {
+    grunt.util.spawn( {
+        cmd: "grunt",
+        args: [ "jscs:merge-with-path" ]
+    }, function( error, result ) {
+        test.ok( result.stdout.indexOf( "curly" ) > 0 );
+        test.ok( result.stdout.indexOf( "Illegal keyword:" ) > 0 );
+        test.equal( result.code, 3 );
+
+        test.done();
+    } );
+};
+
 exports.dot = function( test ) {
     grunt.util.spawn( {
         cmd: "grunt",

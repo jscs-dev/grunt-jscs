@@ -62,7 +62,15 @@ module.exports = function( grunt ) {
                     "requireCurlyBraces": [ "while" ]
                 }
             },
-
+            "merge-with-path": {
+                files: {
+                    src: "../fixtures/merge.js"
+                },
+                options: {
+                    config: ".jscsrc",
+                    "requireCurlyBraces": [ "while" ]
+                }
+            },
             dot: {
                 files: {
                     src: ".",
@@ -73,7 +81,6 @@ module.exports = function( grunt ) {
                     "disallowKeywords": [ "with" ]
                 }
             },
-
             fix: {
                 files: {
                     src: "../fixtures/fixable.js"
@@ -84,7 +91,6 @@ module.exports = function( grunt ) {
                     validateIndentation: 4
                 }
             },
-
             "fix-fail": {
                 files: {
                     src: "../fixtures/fixable.js"
