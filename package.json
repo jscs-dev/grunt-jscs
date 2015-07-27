@@ -1,51 +1,47 @@
 {
-    "name": "grunt-jscs",
-    "description": "Grunt task for checking JavaScript Code Style with jscs.",
-    "version": "1.8.0",
-    "author": {
-      "name": "Gustavo Henke <gustavo@injoin.com.br> and other contributors",
-      "url": "https://github.com/jscs-dev/grunt-jscs/graphs/contributors"
-    },
-    "author": "Gustavo Henke <gustavo@injoin.com.br>",
-    "license": "MIT",
-    "homepage": "https://github.com/jscs-dev/grunt-jscs",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jscs-dev/grunt-jscs.git"
-    },
-    "bugs": {
-        "url": "https://github.com/jscs-dev/grunt-jscs/issues"
-    },
-    "dependencies": {
-        "hooker": "~0.2.3",
-        "jscs": "~2.0.0",
-        "lodash": "~3.1.0",
-        "vow": "~0.4.1"
-    },
-    "devDependencies": {
-        "grunt-cli": "~0.1.13",
-        "grunt-contrib-jshint": "~0.11.2",
-        "grunt-contrib-nodeunit": "~0.4.0",
-        "load-grunt-tasks": "~3.2.0",
-        "time-grunt": "~1.2.1"
-    },
-    "keywords": [
-        "gruntplugin",
-        "jscs",
-        "code style",
-        "checker"
-    ],
-    "engines": {
-        "node": ">= 0.10.0"
-    },
-    "scripts": {
-        "test": "grunt test",
-        "bump": "npm version patch -m \"Release v%s\"",
-        "bump-minor": "npm version minor -m \"Release v%s\"",
-        "bump-major": "npm version major -m \"Release v%s\""
-    },
-    "files": [
-        "tasks",
-        "LICENSE-MIT"
-    ]
+  "name": "grunt-jscs",
+  "description": "Grunt task for checking JavaScript Code Style with jscs.",
+  "version": "2.0.0",
+  "author": "Gustavo Henke <gustavo@injoin.com.br>",
+  "license": "MIT",
+  "homepage": "https://github.com/jscs-dev/grunt-jscs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jscs-dev/grunt-jscs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jscs-dev/grunt-jscs/issues"
+  },
+  "dependencies": {
+    "hooker": "~0.2.3",
+    "jscs": "~2.0.0",
+    "lodash": "~3.1.0",
+    "vow": "~0.4.1"
+  },
+  "devDependencies": {
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-jshint": "~0.11.2",
+    "grunt-contrib-nodeunit": "~0.4.0",
+    "load-grunt-tasks": "~3.2.0",
+    "time-grunt": "~1.2.1"
+  },
+  "keywords": [
+    "gruntplugin",
+    "jscs",
+    "code style",
+    "checker"
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "bump": "npm version patch -m \"Release v%s\"",
+    "bump-minor": "npm version minor -m \"Release v%s\"",
+    "bump-major": "npm version major -m \"Release v%s\""
+  },
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
+  ]
 }
