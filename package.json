@@ -2,12 +2,13 @@
     "name": "grunt-jscs",
     "description": "Grunt task for checking JavaScript Code Style with jscs.",
     "version": "1.8.0",
+    "author": {
+      "name": "Gustavo Henke <gustavo@injoin.com.br> and other contributors",
+      "url": "https://github.com/jscs-dev/grunt-jscs/graphs/contributors"
+    },
     "author": "Gustavo Henke <gustavo@injoin.com.br>",
     "license": "MIT",
     "homepage": "https://github.com/jscs-dev/grunt-jscs",
-    "contributors": [
-        "Oleg Gaidarenko <markelog@gmail.com>"
-    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/jscs-dev/grunt-jscs.git"
@@ -28,9 +29,6 @@
         "load-grunt-tasks": "~1.0.0",
         "time-grunt": "~1.0.0"
     },
-    "peerDependencies": {
-        "grunt": "~0.4.2"
-    },
     "keywords": [
         "gruntplugin",
         "jscs",
@@ -43,7 +41,8 @@
     "scripts": {
         "test": "grunt test",
         "bump": "npm version patch -m \"Release v%s\"",
-        "bump-minor": "npm version minor -m \"Release v%s\""
+        "bump-minor": "npm version minor -m \"Release v%s\"",
+        "bump-major": "npm version major -m \"Release v%s\""
     },
     "files": [
         "tasks",
