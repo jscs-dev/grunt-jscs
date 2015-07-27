@@ -142,7 +142,7 @@ exports.init = function( grunt ) {
             return {};
         }
 
-        // true or null will use default jscs config loader
+        // `true` or null will use default jscs config loader
         config = config === true ? null : config;
         return jscsConfig.load( config, process.cwd() ) || {};
     };

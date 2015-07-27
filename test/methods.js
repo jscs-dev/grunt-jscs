@@ -31,7 +31,7 @@ module.exports = {
             done();
         } );
 
-        // once option from hooker won't work with exceptions
+        // Once option from hooker won't work with exceptions
         hooker.hook( grunt, "fatal", {
             pre: function( message ) {
                 throw new Error( message );
@@ -233,7 +233,7 @@ module.exports = {
         jscs.check( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
 
             // "grunt-contrib-nodeunit" package through which these tests are run,
-            // mutes grunt log actions so it wouldn't interfeare with tests output,
+            // Mutes grunt log actions so it wouldn't interfeare with tests output,
             // for our case this is not ideal since our default reporter uses grunt.log functions
             // this value will be changed when next test is run,
             // so there is no need to do this globally
