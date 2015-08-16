@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "hooker": "~0.2.3",
-    "jscs": "~2.0.0",
-    "lodash": "~3.1.0",
+    "jscs": "~2.1.0",
+    "lodash": "~3.10.0",
     "vow": "~0.4.1"
   },
   "devDependencies": {
