@@ -19,8 +19,9 @@
     "vow": "~0.4.1"
   },
   "devDependencies": {
+    "grunt": "0.4.5",
     "grunt-cli": "~0.1.13",
-    "grunt-contrib-jshint": "~0.11.2",
+    "grunt-contrib-jshint": "~0.11.3",
     "grunt-contrib-nodeunit": "~0.4.0",
     "load-grunt-tasks": "~3.2.0",
     "time-grunt": "~1.2.1"
@@ -31,9 +32,6 @@
     "code style",
     "checker"
   ],
-  "engines": {
-    "node": ">= 0.10.0"
-  },
   "scripts": {
     "test": "grunt test",
     "bump": "npm version patch -m \"Release v%s\"",
