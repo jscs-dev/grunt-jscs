@@ -9,7 +9,7 @@ var Checker = require( "jscs" ),
 exports.init = function( grunt ) {
 
     // Task specific options
-    var taskOptions = [ "config", "force", "reporter", "reporterOutput", "fix" ];
+    var taskOptions = [ "config", "force", "reporter", "reporterOutput" ];
 
     /**
      * @see jQuery.isEmptyObject
@@ -58,29 +58,16 @@ exports.init = function( grunt ) {
     }
 
     /**
-     * @see Checker#checkPath
+     * @see Checker#execute
      */
-    JSCS.prototype.check = function( path ) {
-        var checkPath = this.checker.checkPath( path );
+    JSCS.prototype.execute = function( path ) {
+        var run = this.checker.execute( path );
 
-        checkPath.fail( function( error ) {
+        run.fail( function( error ) {
             grunt.warn( error );
         } );
 
-        return checkPath;
-    };
-
-    /**
-     * @see Checker#fixPath
-     */
-    JSCS.prototype.fix = function( path ) {
-        var fixPath = this.checker.fixPath( path );
-
-        fixPath.fail( function( error ) {
-            grunt.warn( error );
-        } );
-
-        return fixPath;
+        return run;
     };
 
     /**

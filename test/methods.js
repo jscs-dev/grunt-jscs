@@ -26,7 +26,7 @@ module.exports = {
             config: "test/configs/fail.json"
         } );
 
-        fixture.check( "test/fixtures/fixture.js" ).then( function( collection ) {
+        fixture.execute( "test/fixtures/fixture.js" ).then( function( collection ) {
             fixture.setErrors( errors = collection );
             done();
         } );
@@ -230,7 +230,7 @@ module.exports = {
             "requireCurlyBraces": [ "while" ]
         } );
 
-        jscs.check( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
+        jscs.execute( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
 
             // "grunt-contrib-nodeunit" package through which these tests are run,
             // Mutes grunt log actions so it wouldn't interfeare with tests output,
@@ -269,7 +269,7 @@ module.exports = {
             "excludeFiles": [ "test/fixtures/exclude.js" ]
         } );
 
-        jscs.check( "test/fixtures/exclude.js" ).then( function( errors ) {
+        jscs.execute( "test/fixtures/exclude.js" ).then( function( errors ) {
             test.equal( jscs.setErrors( errors ).count(), 0,
                 "should not find any errors in excluded file" );
             test.done();
@@ -283,7 +283,7 @@ module.exports = {
             config: "empty"
         } );
 
-        jscs.check( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
+        jscs.execute( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
             errorsCollection.forEach( function( errors ) {
                 errors.getErrorList().forEach( function( error ) {
                     test.equal( error.message, "test", "should add additional rule" );
@@ -300,7 +300,7 @@ module.exports = {
             reporterOutput: "test.xml"
         } );
 
-        jscs.check( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
+        jscs.execute( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
             jscs.setErrors( errorsCollection ).report();
 
             test.ok( grunt.file.exists( "test.xml" ), "test.xml should exist" );
@@ -317,7 +317,7 @@ module.exports = {
             "requireCurlyBraces": [ "while" ]
         } );
 
-        jscs.check( "test/fixtures/broken.js" ).then( function( errorsCollection ) {
+        jscs.execute( "test/fixtures/broken.js" ).then( function( errorsCollection ) {
             errorsCollection.forEach( function( errors ) {
                 test.equal(
                     errors.getErrorList()[ 0 ].message,
@@ -328,20 +328,5 @@ module.exports = {
                 test.done();
             } );
         } ).fail( test.done );
-    },
-
-    "#fix send it's path to the jscs checker": function( test ) {
-        var jscs = new JSCS( {} );
-
-        hooker.hook( jscs.checker, "fixPath", function( path ) {
-            test.equal( path, "path" );
-            test.done();
-
-            return hooker.override( {
-                fail: function() {}
-            } );
-        } );
-
-        jscs.fix( "path" );
     }
 };
