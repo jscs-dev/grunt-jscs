@@ -13,15 +13,13 @@ module.exports = function( grunt ) {
 
                 // `null` is a default value, but its equivalent to `true`,
                 // With this way it's easy to distinguish specified value
-                config: null,
-
-                fix: false
+                config: null
             } ),
 
             jscs = new JSCS( options ),
-            checks = this.filesSrc.map( options.fix ? jscs.fix : jscs.check, jscs );
+            runs = this.filesSrc.map( jscs.checker.execute, jscs.checker );
 
-        Vow.allResolved( checks ).spread( function() {
+        Vow.allResolved( runs ).spread( function() {
             var results = [];
 
             // Filter unsuccessful promises
