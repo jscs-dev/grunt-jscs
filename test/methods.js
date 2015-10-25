@@ -9,9 +9,9 @@ var fixture, errors,
     hooker = require( "hooker" ),
 
     newJSCS = function() {
-        return new JSCS( {
+        return new JSCS({
             config: newJSCS.config
-        } );
+        });
     };
 
 function getFirstUnsupportedRule( config ) {
@@ -22,21 +22,21 @@ function getFirstUnsupportedRule( config ) {
 
 module.exports = {
     setUp: function( done ) {
-        fixture = new JSCS( {
+        fixture = new JSCS({
             config: "test/configs/fail.json"
-        } );
+        });
 
-        fixture.execute( "test/fixtures/fixture.js" ).then( function( collection ) {
+        fixture.execute( "test/fixtures/fixture.js" ).then(function( collection ) {
             fixture.setErrors( errors = collection );
             done();
-        } );
+        });
 
         // Once option from hooker won't work with exceptions
         hooker.hook( grunt, "fatal", {
             pre: function( message ) {
                 throw new Error( message );
             }
-        } );
+        });
     },
     tearDown: function( done ) {
         hooker.unhook( grunt, "fatal" );
@@ -54,16 +54,16 @@ module.exports = {
         );
         test.equal( example, "example", "should find config at absolute path" );
 
-        jscs = new JSCS( {
+        jscs = new JSCS({
             requireCurlyBraces: [ "if" ]
-        } ).getConfig();
+        }).getConfig();
 
         test.ok( Array.isArray( jscs.requireCurlyBraces ),
                 "\"requireCurlyBraces\" option should have been preserved" );
 
-        jscs = new JSCS( {
+        jscs = new JSCS({
             requireCurlyBraces: [ "if" ]
-        } ).getConfig();
+        }).getConfig();
 
         test.ok( !jscs.config, "config option should have been removed" );
         test.ok( Array.isArray( jscs.requireCurlyBraces ),
@@ -91,13 +91,13 @@ module.exports = {
     },
 
     "getConfig – with inline options": function( test ) {
-        var config = new JSCS( {
+        var config = new JSCS({
             requireCurlyBraces: [ "if" ],
             config: "config",
             force: true,
             reporterOutput: "reporterOutput",
             reporter: ""
-        } ).getConfig();
+        }).getConfig();
 
         test.ok( !config.config, "config option should be removed" );
         test.ok( !config.force, "force option should be removed" );
@@ -109,11 +109,11 @@ module.exports = {
     },
 
     "getConfig – merge inline and config options": function( test ) {
-        var config = new JSCS( {
+        var config = new JSCS({
             requireCurlyBraces: [ "if" ],
             config: "merge.json",
             disallowMultipleVarDecl: true
-        } ).getConfig();
+        }).getConfig();
 
         test.equal( config.requireCurlyBraces[ 0 ], "if",
             "inline option should rewrite config one" );
@@ -165,24 +165,24 @@ module.exports = {
     },
 
     registerReporter: function( test ) {
-        var jscs = new JSCS( {
+        var jscs = new JSCS({
             requireCurlyBraces: []
-        } );
+        });
 
         test.equal( typeof jscs.getReporter(), "function", "should register default reporter" );
 
-        jscs = new JSCS( {
+        jscs = new JSCS({
             requireCurlyBraces: [],
             reporter: "checkstyle"
-        } );
+        });
 
         test.equal( typeof jscs.getReporter(), "function",
             "should register reporter from jscs package" );
 
-        jscs = new JSCS( {
+        jscs = new JSCS({
             requireCurlyBraces: [],
             reporter: "test/test-reporter.js"
-        } );
+        });
 
         test.equal( jscs.getReporter()(), "test", "should register reporter as npm module" );
 
@@ -219,18 +219,18 @@ module.exports = {
             },
 
             once: true
-        } );
+        });
 
         fixture.report();
     },
 
     "Default reporter should be outputable to the file (#23)": function( test ) {
-        var jscs = new JSCS( {
+        var jscs = new JSCS({
             reporterOutput: "#23",
             "requireCurlyBraces": [ "while" ]
-        } );
+        });
 
-        jscs.execute( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
+        jscs.execute( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
 
             // "grunt-contrib-nodeunit" package through which these tests are run,
             // Mutes grunt log actions so it wouldn't interfeare with tests output,
@@ -245,7 +245,7 @@ module.exports = {
             grunt.file.delete( "#23" );
 
             test.done();
-        } );
+        });
     },
 
     notify: function( test ) {
@@ -258,49 +258,49 @@ module.exports = {
             },
 
             once: true
-        } );
+        });
 
         fixture.notify();
     },
 
     excludes: function( test ) {
-        var jscs = new JSCS( {
+        var jscs = new JSCS({
             "requireCurlyBraces": [ "while" ],
             "excludeFiles": [ "test/fixtures/exclude.js" ]
-        } );
+        });
 
-        jscs.execute( "test/fixtures/exclude.js" ).then( function( errors ) {
+        jscs.execute( "test/fixtures/exclude.js" ).then(function( errors ) {
             test.equal( jscs.setErrors( errors ).count(), 0,
                 "should not find any errors in excluded file" );
             test.done();
-        } );
+        });
     },
 
     additional: function( test ) {
-        var jscs = new JSCS( {
+        var jscs = new JSCS({
             "additionalRules": [ "test/rules/*.js" ],
             "testAdditionalRules": true,
             config: "empty"
-        } );
+        });
 
-        jscs.execute( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
-            errorsCollection.forEach( function( errors ) {
-                errors.getErrorList().forEach( function( error ) {
+        jscs.execute( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
+            errorsCollection.forEach(function( errors ) {
+                errors.getErrorList().forEach(function( error ) {
                     test.equal( error.message, "test", "should add additional rule" );
-                } );
+                });
                 test.done();
-            } );
-        } );
+            });
+        });
     },
 
     reporterOutput: function( test ) {
-        var jscs = new JSCS( {
+        var jscs = new JSCS({
             "requireCurlyBraces": [ "while" ],
             reporter: "checkstyle",
             reporterOutput: "test.xml"
-        } );
+        });
 
-        jscs.execute( "test/fixtures/fixture.js" ).then( function( errorsCollection ) {
+        jscs.execute( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
             jscs.setErrors( errorsCollection ).report();
 
             test.ok( grunt.file.exists( "test.xml" ), "test.xml should exist" );
@@ -309,16 +309,16 @@ module.exports = {
             grunt.file.delete( "test.xml" );
 
             test.done();
-        } );
+        });
     },
 
     "Don't break on syntax error": function( test ) {
-        var jscs = new JSCS( {
+        var jscs = new JSCS({
             "requireCurlyBraces": [ "while" ]
-        } );
+        });
 
-        jscs.execute( "test/fixtures/broken.js" ).then( function( errorsCollection ) {
-            errorsCollection.forEach( function( errors ) {
+        jscs.execute( "test/fixtures/broken.js" ).then(function( errorsCollection ) {
+            errorsCollection.forEach(function( errors ) {
                 test.equal(
                     errors.getErrorList()[ 0 ].message,
                     "Unexpected end of input",
@@ -326,7 +326,7 @@ module.exports = {
                 );
 
                 test.done();
-            } );
-        } ).fail( test.done );
+            });
+        }).fail( test.done );
     }
 };

@@ -31,13 +31,13 @@ exports.init = function( grunt ) {
      * @param {errorsCollection} errorsCollection
      */
     function defaultReporter( errorsCollection ) {
-        errorsCollection.forEach( function( errors ) {
+        errorsCollection.forEach(function( errors ) {
             if ( !errors.isEmpty() ) {
-                errors.getErrorList().forEach( function( error ) {
+                errors.getErrorList().forEach(function( error ) {
                     grunt.log.writeln( errors.explainError( error, true ) );
-                } );
+                });
             }
-        } );
+        });
     }
 
     /**
@@ -63,9 +63,9 @@ exports.init = function( grunt ) {
     JSCS.prototype.execute = function( path ) {
         var run = this.checker.execute( path );
 
-        run.fail( function( error ) {
+        run.fail(function( error ) {
             grunt.warn( error );
-        } );
+        });
 
         return run;
     };
@@ -193,9 +193,9 @@ exports.init = function( grunt ) {
     JSCS.prototype.setErrors = function( errorsCollection ) {
 
         // Filter excluded files ("excludeFiles" option)
-        this._errors = errorsCollection.filter( function( errors ) {
+        this._errors = errorsCollection.filter(function( errors ) {
             return errors;
-        } );
+        });
 
         return this;
     };
@@ -216,9 +216,9 @@ exports.init = function( grunt ) {
     JSCS.prototype.count = function() {
         var result = 0;
 
-        this._errors.forEach( function( errors ) {
+        this._errors.forEach(function( errors ) {
             result += errors.getErrorCount();
-        } );
+        });
 
         return result;
     };
@@ -239,7 +239,7 @@ exports.init = function( grunt ) {
 
                     return hooker.preempt();
                 }
-            } );
+            });
         }
 
         this._result = this._reporter( this._errors );

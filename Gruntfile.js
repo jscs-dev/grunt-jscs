@@ -1,7 +1,7 @@
 module.exports = function( grunt ) {
     "use strict";
 
-    grunt.initConfig( {
+    grunt.initConfig({
         jshint: {
             options: {
                 jshintrc: ".jshintrc"
@@ -15,7 +15,7 @@ module.exports = function( grunt ) {
             methods: "test/methods.js",
             enmasse: "test/enmasse.js"
         }
-    } );
+    });
 
     // Load grunt tasks from NPM packages
     require( "load-grunt-tasks" )( grunt );
@@ -23,7 +23,7 @@ module.exports = function( grunt ) {
 
     grunt.loadTasks( "tasks" );
 
-    grunt.registerTask( "lint", [ "jshint", "jscs" ] );
-    grunt.registerTask( "test", [ "lint", "nodeunit" ] );
+    grunt.registerTask( "lint", [ "jshint", "jscs" ]);
+    grunt.registerTask( "test", [ "lint", "nodeunit" ]);
     grunt.registerTask( "default", "test" );
 };

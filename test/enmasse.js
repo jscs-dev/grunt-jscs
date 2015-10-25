@@ -5,73 +5,73 @@ var grunt = require( "grunt" );
 grunt.file.setBase( "test/enmasse" );
 
 exports.fail = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:fail" ]
     }, function( error, result ) {
         test.equal( result.code, 3 );
 
         test.done();
-    } );
+    });
 };
 
 exports.broken = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:broken" ]
     }, function( error, result ) {
         test.equal( result.code, 3 );
 
         test.done();
-    } );
+    });
 };
 
 exports.force = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:force" ]
     }, function( error, result ) {
         test.equal( result.code, 0 );
 
         test.done();
-    } );
+    });
 };
 
 exports.forceAndFatal = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:force", "fatal" ]
     }, function( error, result ) {
         test.equal( result.code, 1 );
 
         test.done();
-    } );
+    });
 };
 
 exports.success = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:success" ]
     }, function( error, result ) {
         test.equal( result.code, 0 );
 
         test.done();
-    } );
+    });
 };
 
 exports.onlyInline = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:only-inline" ]
     }, function( error, result ) {
         test.equal( result.code, 0 );
 
         test.done();
-    } );
+    });
 };
 
 exports.merge = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:merge" ]
     }, function( error, result ) {
@@ -80,11 +80,11 @@ exports.merge = function( test ) {
         test.equal( result.code, 3 );
 
         test.done();
-    } );
+    });
 };
 
 exports.mergeWithPath = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:merge-with-path" ]
     }, function( error, result ) {
@@ -93,11 +93,11 @@ exports.mergeWithPath = function( test ) {
         test.equal( result.code, 3 );
 
         test.done();
-    } );
+    });
 };
 
 exports.dot = function( test ) {
-    grunt.util.spawn( {
+    grunt.util.spawn({
         cmd: "grunt",
         args: [ "jscs:dot" ]
     }, function( error, result ) {
@@ -107,7 +107,7 @@ exports.dot = function( test ) {
         test.equal( result.stdout.split( "Illegal keyword: with" ).length, 3 );
 
         test.done();
-    } );
+    });
 };
 
 exports.fix = fixable( true );
@@ -116,7 +116,7 @@ exports.fixFail = fixable( false );
 function fixable( expectFailure ) {
     return function( test ) {
         grunt.file.copy( "../fixtures/fixable.source.js", "../fixtures/fixable.js" );
-        grunt.util.spawn( {
+        grunt.util.spawn({
             cmd: "grunt",
             args: [ expectFailure ? "jscs:fix-fail" : "jscs:fix" ]
         }, function( error, result ) {
@@ -130,6 +130,6 @@ function fixable( expectFailure ) {
             }
 
             test.done();
-        } );
+        });
     };
 }

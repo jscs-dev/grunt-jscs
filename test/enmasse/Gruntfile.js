@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function( grunt ) {
-    grunt.initConfig( {
+    grunt.initConfig({
         jscs: {
             fail: {
                 files: {
@@ -102,11 +102,11 @@ module.exports = function( grunt ) {
                 }
             }
         }
-    } );
+    });
 
     grunt.loadTasks( "../../tasks" );
     grunt.registerTask( "default", "jscs" );
     grunt.registerTask( "fatal", function() {
         grunt.fatal( "test" );
-    } );
+    });
 };
