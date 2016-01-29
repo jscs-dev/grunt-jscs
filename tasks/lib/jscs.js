@@ -3,27 +3,13 @@
 var Checker = require( "jscs" ),
     jscsConfig = require( "jscs/lib/cli-config" ),
 
-    assign = require( "lodash" ).assign,
+    _ = require( "lodash" ),
     hooker = require( "hooker" );
 
 exports.init = function( grunt ) {
 
     // Task specific options
     var taskOptions = [ "config", "force", "reporter", "reporterOutput" ];
-
-    /**
-     * @see jQuery.isEmptyObject
-     * @private
-     */
-    function isEmptyObject( obj ) {
-        var name;
-
-        for ( name in obj ) {
-            return false;
-        }
-
-        return true;
-    }
 
     /**
      * Default reporter
@@ -81,11 +67,11 @@ exports.init = function( grunt ) {
 
         // If the config option is null, but we have inline options,
         // we'll only use them as our config.
-        if ( configOption == null && !isEmptyObject( options ) ) {
+        if ( configOption == null && !_.isEmpty( options ) ) {
             config = options;
 
         } else {
-            assign( config, options );
+            _.assign( config, options );
         }
 
         this.throwForConfig( config );
@@ -100,7 +86,7 @@ exports.init = function( grunt ) {
     JSCS.prototype.throwForConfig = function( config ) {
         var configOption = this.options.config;
 
-        if ( isEmptyObject( config ) ) {
+        if ( _.isEmpty( config ) ) {
             if ( configOption && typeof configOption === "string" ) {
                 if ( grunt.file.exists( configOption ) ) {
                     grunt.fatal( "\"" + configOption + "\" config is empty" );
