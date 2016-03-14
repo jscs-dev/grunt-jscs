@@ -9,7 +9,7 @@ var Checker = require( "jscs" ),
 exports.init = function( grunt ) {
 
     // Task specific options
-    var taskOptions = [ "config", "force", "reporter", "reporterOutput" ];
+    var taskOptions = [ "config", "force", "reporter", "reporterOutput", "reporterOutputOnly" ];
 
     /**
      * Default reporter
@@ -216,14 +216,21 @@ exports.init = function( grunt ) {
     JSCS.prototype.report = function() {
         var options = this.options,
             shouldHook = options.reporterOutput,
+            suppressStdOut = options.reporterOutputOnly,
             content = "";
+
+        if ( suppressStdOut === undefined ) {
+            suppressStdOut = true;
+        }
 
         if ( shouldHook ) {
             hooker.hook( process.stdout, "write", {
                 pre: function( out ) {
                     content += out;
 
-                    return hooker.preempt();
+                    if ( suppressStdOut ) {
+                        return hooker.preempt();
+                    }
                 }
             });
         }

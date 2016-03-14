@@ -96,12 +96,14 @@ module.exports = {
             config: "config",
             force: true,
             reporterOutput: "reporterOutput",
+            reporterOutputOnly: "reporterOutputOnly",
             reporter: ""
         }).getConfig();
 
         test.ok( !config.config, "config option should be removed" );
         test.ok( !config.force, "force option should be removed" );
-        test.ok( !config.reporterOuput, "reporterOuput option should be removed" );
+        test.ok( !config.reporterOuput, "reporterOutput option should be removed" );
+        test.ok( !config.reporterOuputOnly, "reporterOutputOnly option should be removed" );
         test.ok( !config.reporter, "reporter option should be removed" );
         test.ok( !!config.requireCurlyBraces, "requireCurlyBraces should stay" );
 
@@ -244,6 +246,39 @@ module.exports = {
 
             grunt.file.delete( "#23" );
 
+            test.done();
+        });
+    },
+
+    "Reporter should be outputable to stdout and the file (#24)": function( test ) {
+        var jscs = new JSCS({
+            reporterOutput: "#24",
+            reporterOutputOnly: false,
+            "requireCurlyBraces": [ "while" ]
+        });
+
+        jscs.execute( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
+            hooker.hook( grunt.log, {
+                pre: function( message ) {
+                    test.ok( message, "all output should be directed to stdout" );
+                    console.log( "expected stdout output" );
+
+                    return hooker.preempt();
+                },
+
+                once: true
+            });
+
+            jscs.setErrors( errorsCollection ).report();
+            test.ok(
+                grunt.file.read( "#24" ).length,
+                "all output should also be directed to the file"
+            );
+
+            grunt.file.delete( "#24" );
+
+            test.expect( 2 );
+            hooker.unhook( grunt.log );
             test.done();
         });
     },
