@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "hooker": "~0.2.3",
-    "jscs": "~2.11.0",
+    "jscs": "git://github.com/jscs-dev/node-jscs.git",
     "lodash": "~4.6.1",
     "vow": "~0.4.1"
   },
