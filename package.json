@@ -36,7 +36,7 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "grunt test",
+    "test": "grunt test --verbose",
     "bump": "npm version patch -m \"Release v%s\"",
     "bump-minor": "npm version minor -m \"Release v%s\"",
     "bump-major": "npm version major -m \"Release v%s\""
