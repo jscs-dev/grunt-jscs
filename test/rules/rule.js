@@ -10,6 +10,6 @@ module.exports.prototype = {
     },
 
     check: function(file, errors) {
-        errors.add( "test", { line: 1, column: 1 } );
+        errors.add( "test", file.getProgram() );
     }
 };

@@ -286,7 +286,11 @@ module.exports = {
         jscs.execute( "test/fixtures/fixture.js" ).then(function( errorsCollection ) {
             errorsCollection.forEach(function( errors ) {
                 errors.getErrorList().forEach(function( error ) {
-                    test.equal( error.message, "test", "should add additional rule" );
+                    test.equal(
+                        error.message,
+                        "testAdditionalRules: test",
+                        "should add additional rule"
+                    );
                 });
                 test.done();
             });
@@ -321,7 +325,7 @@ module.exports = {
             errorsCollection.forEach(function( errors ) {
                 test.equal(
                     errors.getErrorList()[ 0 ].message,
-                    "Unexpected end of input",
+                    "Unexpected token (3:13)",
                     "should return correct syntax error"
                 );
 
