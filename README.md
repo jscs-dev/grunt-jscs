@@ -71,6 +71,12 @@ Default value: `null`
 
 Specify a filepath to output the results of a reporter. If `reporterOutput` is specified then all output will be written to the given filepath instead of printed to stdout.
 
+#### reporterOutputOnly
+Type: `Boolean`
+Default value: `true`
+
+Determines if the output of a reporter should be written to only the `reporterOutput` filepath. If this is `false` the output will be written to both stdout and the given filepath.
+
 ### Usage examples
 ```js
 jscs: {
